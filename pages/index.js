@@ -8,6 +8,8 @@ export default function Home() {
       <Head>
         <title>Josiah Adeniyi</title>
         <link rel="icon" href="/favicon.ico" />
+        <!-- uikit css -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.14.1/dist/css/uikit.min.css" />
       </Head>
 
       <main>
