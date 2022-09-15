@@ -38,11 +38,11 @@ for (let i = 0; i < elms.length; i++) {
   
   if(msg.value.length < 1){
    msg.focus(); 
-    return Toast("enter a message to send","warning")
+    return Toast("Enter a message to send","warning")
   }
   if(from.value.length < 1) {
   from.focus(); 
-    return Toast("enter an email address","warning")
+    return Toast("Enter an email address","warning")
   }
   
   setMailBtn(true);  
@@ -57,10 +57,10 @@ for (let i = 0; i < elms.length; i++) {
     msg.value = ""
     from.value = ""  
     setMailBtn(false);
-   return Toast("message sent successfully","success");
+   return Toast("Message sent successfully","success");
   } else {
     setMailBtn(false);
-   return Toast("message not sent, try again", "error");
+   return Toast("Message not sent, try again", "error");
   }
 }  
  
@@ -94,7 +94,7 @@ return (
       <Link href="hire-me"><a><button className="uk-button hire-me-btn uk-border-rounded uk-button-large uk-width-expand"><big>hire me <i className="bi-chevron-double-right"></i></big></button></a></Link>         
      </div>       
      <div className="uk-width-expand uk-padding-small">  
-      <button className="uk-button uk-button-large uk-border-rounded uk-width-expand msg-me-btn" onClick={(()=> {document.queryselector('#msg').focus()})}>message me <i className="bi-chevron-down"></i></button>
+      <button className="uk-button uk-button-large uk-border-rounded uk-width-expand msg-me-btn" onClick={(()=> {document.querySelector('#msg').focus()})}>message me <i className="bi-chevron-down"></i></button>
      </div>   
     </div>
     <div id="space" className="uk-hidden@s"></div> 

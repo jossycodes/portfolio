@@ -20,5 +20,8 @@ a {
   justify-content: center; 
 }
 button:disabled {
-  background: lightgrey; 
+  background: lightgrey !important;  
+}
+.swal {
+  background: #F9F02F !important;  
 }
