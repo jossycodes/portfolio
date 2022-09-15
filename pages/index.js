@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/future/image'
 import Link from 'next/link'  
-//import txttype from '../lib/txttype'
 import {useEffect,useState} from 'react'
 import aos from 'aos'
 import uikit from 'uikit'
@@ -10,12 +9,11 @@ import typed from 'react-typed'
 //import me from '/images/me.png' 
 
  
-export default function home() {
- 
- const [loaded,setLoaded] = useState(false); 
-const [mailBtn,setMailBtn] = useState(false); 
+export default function Home() {
   
-useEffect(() => {setLoaded(true);},[]);
+const [mailBtn,setMailBtn] = useState(false);
+  
+useEffect(() => {
 
 if(loaded) {
 //const fbtn = document.queryselector('#floatbtn')
@@ -37,6 +35,7 @@ const observer = new IntersectionObserver(
 for (let i = 0; i < elms.length; i++) {
  observer.observe(elms[i]);
 }
+
   
   
   
@@ -48,7 +47,8 @@ for (let i = 0; i < elms.length; i++) {
    new txttype(elements[i], json.parse(torotate), period);
   }
  }*/
-} 
+}
+},[])
 
  const handleSubmit = async function(e) {
   e.preventdefault();
@@ -82,15 +82,15 @@ for (let i = 0; i < elms.length; i++) {
   if(status.sent) {
     msg.value = ""
     from.value = ""  
-   return toast("message sent successfully","success"); 
-   setMailBtn(false);
+    setMailBtn(false);
+   return toast("message sent successfully","success");
   } else {
+    setMailBtn(false);
    return toast("message not sent, try again", "error");
-   setMailBtn(false);
   }
   } 
 }
-const css = {width: "20vw", height: "auto"}
+ 
 return (   
 
 <html>
@@ -325,8 +325,7 @@ return (
    <div className="uk-grid uk-grid-collapse  uk-child-width-1-2@s"> 
    <div className="flex-center uk-hidden@s"><Image src="/images/lightbulb.png" height="300" width="300" alt="what's the big idea"/></div>   
    <div>  
-   <h3 className="uk-padding uk-text-muted uk-padding-remove-top">got an ideea??...</h3>
-   <h4 className="uk-padding-small uk-padding-remove-vertical uk-text-muted">don&apos;'t sleep on it, let&apos;'s build together</h4>   
+   <h3 className="uk-padding uk-text-muted uk-padding-remove-top">got an ideea??<br/>Dont sleep on it, lets build together</h3>       
     <div className="uk-padding uk-text-center">   
        <Link href="hire-me"><a><button className="uk-button  uk-border-rounded hire-me-btn uk-width-expand uk-button-large">hire me now</button></a></Link>    
       </div>
