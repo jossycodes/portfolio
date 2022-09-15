@@ -25,11 +25,11 @@ for (let i = 0; i < elms.length; i++) {
 }
 },[])
 
- const handleSubmit = async function(e) {
-  e.preventdefault();
+ const handleSubmit = async(e)=> {
+  e.preventDefault(); 
   
-  let msg = document.queryselector('#msg');
-  let from = document.queryselector('#from');
+  let msg = document.querySelector('#msg');
+  let from = document.querySelector('#from');
   
   const data = {
    msg: msg.value,
@@ -62,12 +62,12 @@ for (let i = 0; i < elms.length; i++) {
     setMailBtn(false);
    return Toast("message not sent, try again", "error");
   }
-} 
+}  
  
 return (   
  <div>
   <Head>
-   <title>jossycodes</title>  
+   <title>Jossycodes</title>  
   </Head> 
   <div id="profile">  
    <div id="me" className="uk-grid uk-grid-collapse">
