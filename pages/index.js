@@ -5,7 +5,7 @@ import {useEffect,useState} from 'react'
 import aos from 'aos'
 import uikit from 'uikit'
 import toast from '../components/toasts'
-import typed from 'react-typed' 
+import Typed from 'react-typed' 
 
   
 export default function Home() {
@@ -13,9 +13,6 @@ export default function Home() {
 const [mailBtn,setMailBtn] = useState(false);
   
 useEffect(() => {
-
-
-
 aos.init();
 
 const elms = document.querySelectorAll(".sticky"); 
@@ -89,8 +86,8 @@ return (
     </div> 
     <div id="bio"> 
     <h1>
-     <typed strings={['hi, i am josiah.','i am creative.','i love design.','i love to develop.']}  typespeed={100} loop={true} startdelay={700} backspeed={100}  />      
-      </h1>     
+     <Typed strings={['Hi, I am Josiah.','I am creative.','I love design.','I love to develop.']}  typeSpeed={100} loop={true} startDelay={700} backSpeed={100}  />       
+      </h1>      
     </div> 
     <div id="btns" data-uk-grid className="uk-padding-small uk-grid uk-grid-collapse">     
      <div className=" uk-width-3-5@m uk-padding-small uk-padding-remove-horizontal">   
@@ -210,7 +207,7 @@ return (
            <div className="uk-card-body uk-padding-small">
             <h3 className="uk-card-title">gomyweather</h3>
             <p>using an api this app provides useful data about the weather conditions of over 200,000 cites in the world.</p>
-            <div className="uk-text-right"><a href="#"> <button className="card-btn">check it out  <i className="bi-chevron-right"></i></button></a></div>      
+            <div className="uk-text-right"><a href="https://gomyweather.netlify.app"> <button className="card-btn">check it out  <i className="bi-chevron-right"></i></button></a></div>       
            </div> 
           </div>
          </li>
