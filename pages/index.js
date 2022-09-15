@@ -6,24 +6,15 @@ import aos from 'aos'
 import uikit from 'uikit'
 import toast from '../components/toasts'
 import typed from 'react-typed' 
-//import me from '/images/me.png' 
 
- 
+  
 export default function Home() {
   
 const [mailBtn,setMailBtn] = useState(false);
   
 useEffect(() => {
 
-if(loaded) {
-//const fbtn = document.queryselector('#floatbtn')
-//const offcanvas = document.queryselector('#offcanvas');
 
-//uikit.offcanvas(offcanvas,{flip: true,overlay: true});   
-
-/*fbtn.addeventlistener('click', function() {
- uikit.offcanvas(offcanvas).show();
-});*/   
 
 aos.init();
 
@@ -35,25 +26,11 @@ const observer = new IntersectionObserver(
 for (let i = 0; i < elms.length; i++) {
  observer.observe(elms[i]);
 }
-
-  
-  
-  
-  /*var elements = document.getelementsbyclassname('typewrite');
- for (var i = 0; i < elements.length; i++) {
-  var torotate = elements[i].getattribute('data-type');
-  var period = elements[i].getattribute('data-period');
-  if (torotate) {
-   new txttype(elements[i], json.parse(torotate), period);
-  }
- }*/
-}
 },[])
 
  const handleSubmit = async function(e) {
   e.preventdefault();
   
-  if(loaded) {
   let msg = document.queryselector('#msg');
   let from = document.queryselector('#from');
   
@@ -88,41 +65,14 @@ for (let i = 0; i < elms.length; i++) {
     setMailBtn(false);
    return toast("message not sent, try again", "error");
   }
-  } 
 }
  
 return (   
-
-<html>
-<Head>
- <title>jossycodes</title>  
-</Head>
-
-<body>
  <div>
-  {/*<div id="offcanvas" data-uk-offcanvas="flip: true; overlay: true">  
-   <div className="uk-offcanvas-bar">
-    <button className="uk-offcanvas-close" type="button" uk-close></button>
-    <div className="uk-padding-small">
-     <a href="#experience">
-      <div>experience</div>
-     </a>
-     <a href="#skills">
-      <div>skills</div>
-     </a>
-     <a href="#projects">
-      <div>projects</div>
-     </a>
-     <a href="#footer">
-      <div>contact me</div>
-     </a>
-    </div>
-   </div>
-  </div>*/} 
+  <Head>
+   <title>jossycodes</title>  
+  </Head> 
   <div id="profile">  
-  
-     
-    
    <div id="me" className="uk-grid uk-grid-collapse">
    
    <div id="pic-2" className="uk-width-2-5 uk-visible@s">
@@ -139,7 +89,7 @@ return (
     </div> 
     <div id="bio"> 
     <h1>
-    <typed strings={['hi, i am josiah.','i am creative.','i love design.','i love to develop.']}  typespeed={100} loop={true} startdelay={700} backspeed={100}  />      
+     <typed strings={['hi, i am josiah.','i am creative.','i love design.','i love to develop.']}  typespeed={100} loop={true} startdelay={700} backspeed={100}  />      
       </h1>     
     </div> 
     <div id="btns" data-uk-grid className="uk-padding-small uk-grid uk-grid-collapse">     
@@ -174,15 +124,15 @@ return (
   <div id="main">
    <div id="info" className="uk-grid">
     <div className="uk-width-expand@m">
-     <section className="">
+     <div className="">
       <h2 className="uk-text-cente sticky">About Me</h2>
       <p className="uk-text-muted uk-padding uk-padding-remove-top">
       hello <big>👋</big>, i am a fullstack web developer.<br />
         i am passionate about my work, a problem solver who is willing to learn, a team player, i always want to be part of something greater. i like to think that i can rise to any challenge when given a chance.
        <br />am well rounded but javascript is my wheelhouse.
       </p>  
-     </section>
-     <section id="experience" className="">
+     </div> 
+     <div id="experience" className="">
       <h2 className="sticky">Experience</h2> 
       <p className="uk-padding uk-text-muted uk-padding-remove-top">a fullstack developer with over 4+ years of experience working with front and backend frameworks</p>
       <div className="uk-padding uk-padding-remove-top">
@@ -199,10 +149,10 @@ return (
         <li>i was involved in project management tasks</li>
        </ul>
       </div>
-     </section>
+     </div>
     </div>
     <div className="uk-width-1-3@m">
-     <section id="skills" className="">
+     <div id="skills" className="">
       <h2 className="sticky">Stack</h2>
       <p className="uk-padding uk-text-muted uk-padding-remove-top">in the past few years and up until now, i have worked with a couple of technologies some of which are outlined below <big>👇.</big></p>  
       <h4 className="uk-text-muted uk-text-center">front end</h4>
@@ -241,13 +191,13 @@ return (
        </div>
       </div>  
       
-     </section>
+     </div>
     </div>
    </div>
    <div id="projects">
     <h2 className="sticky">Projects</h2>
     <h5 className="uk-padding uk-text-muted uk-padding-remove-top">below are some projects i have built personally just swipe and tap to view them.</h5>
-    <section className="uk-padding">
+    <div className="uk-padding">
      <div>
       <div className="uk-slider-container-offset" data-uk-slider>
        <div className="uk-position-relative uk-visible-toggle uk-light" data-tabindex="-1">
@@ -320,12 +270,12 @@ return (
        {/*<ul className="uk-slider-nav uk-dotnav  uk-flex-center uk-margin"></ul>*/} 
       </div>
      </div>
-    </section>
+    </div>
    </div>
    <div className="uk-grid uk-grid-collapse  uk-child-width-1-2@s"> 
    <div className="flex-center uk-hidden@s"><Image src="/images/lightbulb.png" height="300" width="300" alt="what's the big idea"/></div>   
    <div>  
-   <h3 className="uk-padding uk-text-muted uk-padding-remove-top">got an ideea??<br/>Dont sleep on it, lets build together</h3>       
+   <h3 className="uk-padding uk-text-muted uk-padding-remove-top">got an ideea??<br/>Dont sleep on it, lets build together</h3>      
     <div className="uk-padding uk-text-center">   
        <Link href="hire-me"><a><button className="uk-button  uk-border-rounded hire-me-btn uk-width-expand uk-button-large">hire me now</button></a></Link>    
       </div>
@@ -352,11 +302,6 @@ return (
     <a href="https://www.linkedin.com/in/josiah-adeniyi-329168240"><span className="bi-linkedin"></span></a>
    </div>
   </div>
- 
- {/* <button className="animate__animated animate__bounce  uk-box-shadow-medium uk-hidden@m" id="floatbtn"><i className="bi-list"></i></button>*/}
- </div>   
-</body>
-
-</html>
+ </div>    
  )
 } 
