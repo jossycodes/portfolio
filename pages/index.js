@@ -4,7 +4,7 @@ import Link from 'next/link'
 import {useEffect,useState} from 'react'
 import aos from 'aos'
 import uikit from 'uikit'
-import toast from '../components/toasts'
+import Toast from '../components/toasts'
 import Typed from 'react-typed' 
 
   
@@ -38,11 +38,11 @@ for (let i = 0; i < elms.length; i++) {
   
   if(msg.value.length < 1){
    msg.focus(); 
-    return toast("enter a message to send","warning")
+    return Toast("enter a message to send","warning")
   }
   if(from.value.length < 1) {
   from.focus(); 
-    return toast("enter an email address","warning")
+    return Toast("enter an email address","warning")
   }
   
   setMailBtn(true);  
@@ -57,12 +57,12 @@ for (let i = 0; i < elms.length; i++) {
     msg.value = ""
     from.value = ""  
     setMailBtn(false);
-   return toast("message sent successfully","success");
+   return Toast("message sent successfully","success");
   } else {
     setMailBtn(false);
-   return toast("message not sent, try again", "error");
+   return Toast("message not sent, try again", "error");
   }
-}
+} 
  
 return (   
  <div>
