@@ -19,3 +19,6 @@ a {
   align-items: center;
   justify-content: center; 
 }
+button:disabled {
+  background: lightgrey; 
+}

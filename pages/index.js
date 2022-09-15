@@ -47,11 +47,11 @@ for (let i = 0; i < elms.length; i++) {
   
   setMailBtn(true);  
  
-  let response = await fetch('/api/mailer',{method: 'post',
-	body: json.stringify(data),
-	headers: {
-		'content-type': 'application/json; charset=utf-8'
-	}});
+  let response = await fetch('/api/mailer',{method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8'
+        }}); 
   let status = await response.json();
   if(status.sent) {
     msg.value = ""
