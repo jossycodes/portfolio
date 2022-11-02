@@ -131,8 +131,8 @@ return (
      </div> 
      <div id="experience" className="">
       <h2 className="sticky">Experience</h2> 
-      <p className="uk-padding uk-text-muted uk-padding-remove-top">a fullstack developer with over 4+ years of experience working with front and backend frameworks</p>
-      <div className="uk-padding uk-padding-remove-top">
+      <p className="uk-padding uk-text-muted uk-padding-remove-top">Fullstack developer with 4+ years experience on the frontend working with technologies like reactjs, 3+ years of experience working on the backend wuth technologies like Nodejs and Laravel. <p>Experience with database management systems, using technologies like MongoDB and MySQL</p></p>
+      {/*<div className="uk-padding uk-padding-remove-top">
        <h4>
         <span>junior developer</span>
         <span className="uk-float-right">2019 - 2020</span>
@@ -145,7 +145,7 @@ return (
         <li>i was involved the backend development of the project</li>
         <li>i was involved in project management tasks</li>
        </ul>
-      </div>
+      </div>*/}
      </div>
     </div>
     <div className="uk-width-1-3@m">

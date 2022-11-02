@@ -311,8 +311,12 @@ div {
  border: 2px solid #fff !important;
  color: white !important;
 }
+#services li {
+  padding: 1rem 0; 
+}
 #services .service {
   border: 1px solid lightgrey;
+  border-radius: .5rem; 
 }
 #projects {
  padding-bottom: 4rem;  
