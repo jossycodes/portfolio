@@ -312,7 +312,8 @@ div {
  color: white !important;
 }
 #services li {
-  padding: 1rem 0; 
+  padding-top: .5rem;
+  padding-bottom: .5rem;  
 }
 #services .service {
   border: 1px solid lightgrey;

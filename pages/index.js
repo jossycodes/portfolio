@@ -131,7 +131,7 @@ return (
      </div> 
      <div id="experience" className="">
       <h2 className="sticky">Experience</h2> 
-      <p className="uk-padding uk-text-muted uk-padding-remove-top">Fullstack developer with 4+ years experience on the frontend working with technologies like reactjs, 3+ years of experience working on the backend wuth technologies like Nodejs and Laravel. <p>Experience with database management systems, using technologies like MongoDB and MySQL</p></p>
+      <p className="uk-padding uk-text-muted uk-padding-remove-top">Fullstack developer with 4+ years experience on the frontend working with technologies like reactjs, 3+ years of experience working on the backend with technologies like Nodejs and Laravel. <p>Experience with database management systems, using technologies like MongoDB and MySQL</p></p>
       {/*<div className="uk-padding uk-padding-remove-top">
        <h4>
         <span>junior developer</span>
@@ -151,7 +151,7 @@ return (
     <div className="uk-width-1-3@m">
      <div id="skills" className="">
       <h2 className="sticky">Stack</h2>
-      <p className="uk-padding uk-text-muted uk-padding-remove-top">in the past few years and up until now, i have worked with a couple of technologies some of which are outlined below <big>👇.</big></p>  
+      <p className="uk-padding uk-text-muted uk-padding-remove-top">In the past few years and up until now, i have worked with a couple of technologies some of which are outlined below <big>👇.</big></p>  
       <h4 className="uk-text-muted uk-text-center">Front End</h4>
       <div className="uk-padding">
        <div uk-grid className="skills uk-grid uk-child-width-1-2  uk-child-width-1-3@s">
@@ -190,11 +190,11 @@ return (
       
      </div>
     </div>
-   </div>
+   </div> 
    
    <div id="services">
     <h2 className="sticky">Services</h2>
-    <h5 className="uk-padding uk-text-muted uk-padding-remove-top">here is a range of services i offer for my clients</h5>
+    {/*<h5 className="uk-padding uk-text-muted uk-padding-remove-top">Here is a range of services i offer for my clients</h5>*/} 
     <div className="uk-padding">
      <ul className="uk-grid uk-child-width-1-2"> 
       <li><div className="uk-card uk-padding-small service">Web Development</div></li> 
