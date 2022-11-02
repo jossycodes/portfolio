@@ -13,11 +13,11 @@ export default function Home() {
 const [mailBtn,setMailBtn] = useState(false);
   
 useEffect(() => {
-aos.init({mirror: false}); 
+aos.init({mirror: false, once: true});  
 
 const elms = document.querySelectorAll(".sticky"); 
 const observer = new IntersectionObserver(
- ([e]) => e.target.classList.toggle("uk-box-shadow-medium", e.intersectionRatio < 1), { threshold: [1] }    
+ ([e]) => e.target.classList.toggle("is-pinned", e.intersectionRatio < 1), { threshold: [1] }    
 );   
  
 for (let i = 0; i < elms.length; i++) {

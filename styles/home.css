@@ -256,15 +256,13 @@ div {
  background: #fdfefe; 
  padding: 20px;
  color: #001650;
- border-left: 0.6rem solid #F9F02F;
+ /*border-left: 0.6rem solid #F9F02F;*/
 } 
 
 .sticky.is-pinned {
- text-align: center;
- box-shadow: 0 0 1px 5px grey;
- background: #001650 ;
- color: #fff !important; 
+ box-shadow: 0 0 1px 5px grey; 
  transition: 0.2s; 
+ border-left: 0.6rem solid #F9F02F; 
 }
 
 #info section {
