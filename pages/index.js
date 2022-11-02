@@ -89,11 +89,11 @@ return (
      <Typed strings={['Hi, I am Josiah.','I am creative.','I love design.','I love to develop.']}  typeSpeed={100} loop={true} startDelay={700} backSpeed={100}  />       
       </h1>      
     </div> 
-    <div id="btns" data-uk-grid className="uk-padding-small uk-grid uk-grid-collapse">     
-     <div className=" uk-width-3-5@m uk-padding-small uk-padding-remove-horizontal">   
+    <div id="btns" data-uk-grid className="uk-padding-small uk-grid">     
+     <div className=" uk-width-3-5@m uk-padding-small">   
       <Link href="hire-me"><a><button className="uk-button hire-me-btn uk-border-rounded uk-button-large uk-width-expand"><big>hire me <i className="bi-chevron-double-right"></i></big></button></a></Link>         
      </div>       
-     <div className="uk-width-expand uk-padding-small">  
+     <div className="uk-width-expand uk-padding-small">   
       <button className="uk-button uk-button-large uk-border-rounded uk-width-expand msg-me-btn" onClick={(()=> {document.querySelector('#msg').focus()})}>message me <i className="bi-chevron-down"></i></button>
      </div>   
     </div>
