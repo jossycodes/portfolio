@@ -13,7 +13,7 @@ export default function Home() {
 const [mailBtn,setMailBtn] = useState(false);
   
 useEffect(() => {
-aos.init();
+aos.init({mirror: false}); 
 
 const elms = document.querySelectorAll(".sticky"); 
 const observer = new IntersectionObserver(
