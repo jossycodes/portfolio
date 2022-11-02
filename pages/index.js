@@ -196,7 +196,7 @@ return (
     <h2 className="sticky">Services</h2>
     {/*<h5 className="uk-padding uk-text-muted uk-padding-remove-top">Here is a range of services i offer for my clients</h5>*/} 
     <div className="uk-padding">
-     <ul className="uk-grid uk-child-width-1-2@s"> 
+     <ul className="uk-grid uk-child-width-1-3@s">    
       <li><span className="uk-card uk-padding-small service" data-aos="zoom-out-up">Web Development</span></li>  
       <li><span className="uk-card uk-padding-small service" data-aos="zoom-out-up">Search Engine Optimization</span></li>
       <li><span className="uk-card uk-padding-small service" data-aos="zoom-out-up">Graphic Designs</span></li>
