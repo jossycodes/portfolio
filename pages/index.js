@@ -152,7 +152,7 @@ return (
      <div id="skills" className="">
       <h2 className="sticky">Stack</h2>
       <p className="uk-padding uk-text-muted uk-padding-remove-top">in the past few years and up until now, i have worked with a couple of technologies some of which are outlined below <big>👇.</big></p>  
-      <h4 className="uk-text-muted uk-text-center">front end</h4>
+      <h4 className="uk-text-muted uk-text-center">Front End</h4>
       <div className="uk-padding">
        <div uk-grid className="skills uk-grid uk-child-width-1-2  uk-child-width-1-3@s">
         <div data-aos="zoom-in" className="uk-padding-small"> 
@@ -174,7 +174,7 @@ return (
          <Image src="/images/material-ui-icon.png" height="50" width="50" alt="mui logo"/><span> mui</span>   
         </div>
        </div>
-       <h4 className="uk-text-muted uk-text-center">back end</h4>
+       <h4 className="uk-text-muted uk-text-center">Back End</h4>
        <div uk-grid className="skills uk-grid uk-child-width-1-2 uk-child-width-1-3@s"> 
         <div data-aos="zoom-in" className="uk-padding-small">
          <Image src="/images/nodejs-icon.png" height="50" width="50"  alt="nodejs logo"/>&nbsp;<span> node.js</span>
@@ -186,11 +186,24 @@ return (
          <Image src="/images/mongodb-icon.png" height="50" width="50" alt="mongodb logo"/>&nbsp;<span>mongodb</span>    
         </div> 
        </div>
-      </div>  
+      </div>   
       
      </div>
     </div>
    </div>
+   
+   <div id="services">
+    <h2 className="sticky">Services</h2>
+    <h5 className="uk-padding uk-text-muted uk-padding-remove-top">here is a range of services i offer for my clients</h5>
+    <div className="uk-padding">
+      <li><div className="uk-card uk-padding-small service">Web Development</div></li> 
+      <li><div className="uk-card uk-padding-small service">Search Engine Optimization</div></li>
+      <li><div className="uk-card uk-padding-small service">Graphic Designs</div></li>
+      <li><div className="uk-card uk-padding-small service">UI UX design</div></li>
+      <li><div className="uk-card uk-padding-small service">Web Templates</div></li>
+    </div>
+   </div>
+   
    <div id="projects">
     <h2 className="sticky">Projects</h2>
     <h5 className="uk-padding uk-text-muted uk-padding-remove-top">below are some projects i have built personally just swipe and tap to view them.</h5>
@@ -269,6 +282,7 @@ return (
      </div>
     </div>
    </div>
+   
    <div className="uk-grid uk-grid-collapse  uk-child-width-1-2@s"> 
    <div className="flex-center uk-hidden@s"><Image src="/images/lightbulb.png" height="300" width="300" alt="what's the big idea"/></div>   
    <div>  

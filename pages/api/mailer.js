@@ -27,9 +27,9 @@ try {
   let info = await transporter.sendMail({
     from: body.from,//'"Fred Foo 👻" <foo@example.com>', // sender address
     to: "josiahadeniyi1@gmail.com", // list of receivers
-    subject: body.subject || 'new message', // Subject line
+    subject: body.subject || 'New message from jossycodes', // Subject line
     text: body.msg, // plain text body
-    replyTo: body.from,  
+    replyTo: body.from,   
   });  
 
   console.log("Message sent: %s", info.messageId);

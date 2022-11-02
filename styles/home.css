@@ -52,7 +52,7 @@ div {
 }  
 #pic-2-sus {
   /*background: #fff;*/
-  border-right: .6rem solid white; 
+  /*border-right: .6rem solid white;*/
   padding: 4rem 0;
    display: flex !important;
   align-items: center !important;
@@ -311,7 +311,9 @@ div {
  border: 2px solid #fff !important;
  color: white !important;
 }
-
+#services .service {
+  border: 1px solid lightgrey;
+}
 #projects {
  padding-bottom: 4rem;  
 }

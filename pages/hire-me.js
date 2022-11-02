@@ -90,10 +90,10 @@ export default function HireMe() {
 
     return (
  <div>
-  <div className="uk-padding flex-center">
+  <div className="uk-padding-small flex-center">
    <form onSubmit={handleSubmit}>
-    <legend className="uk-legend uk-padding uk-padding-remove-horizontal">Hire me...</legend> 
-    <div className="uk-grid uk-grid-collapse uk-child-width-1-2@m uk-width-expand uk-padding-small uk-padding-remove-horizontal uk-padding-remove-top"> 
+    <legend className="uk-legend uk-padding-small">Hire me...</legend> 
+    <div className="uk-grid uk-grid-collapse uk-child-width-1-2@m uk-width-expand uk-padding-small uk-padding-remove-horizontal uk-padding-remove-top">  
      <div className="uk-padding-small">
       <span className="uk-text-muted">Name<span style={ { color: 'red' }}>*</span></span>
       <input id="name" value={name} onChange={(e)=> setName(e.target.value)} className="uk-input uk-input-large" />
