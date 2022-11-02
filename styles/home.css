@@ -256,11 +256,11 @@ div {
  background: #fdfefe; 
  padding: 20px;
  color: #001650;
- /*border-left: 0.6rem solid #F9F02F;*/
+ border-left: 0.6rem solid transparent;
 } 
 
 .sticky.is-pinned {
- box-shadow: 0 0 1px 5px grey; 
+ box-shadow: 5px 5px 1px lightgrey;  
  transition: 0.2s; 
  border-left: 0.6rem solid #F9F02F; 
 }
