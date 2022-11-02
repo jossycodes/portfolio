@@ -289,11 +289,12 @@ div {
 
 .skills {
  padding-left: 10px !important;
+ border-bottom: 3px solid transparent;
 }
 
 .skills div:hover {
  border-bottom: 3px solid #F9F02F;
- color: grey;
+ color: grey; 
 }
 
 .hire-me-btn {

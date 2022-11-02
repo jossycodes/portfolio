@@ -196,12 +196,12 @@ return (
     <h2 className="sticky">Services</h2>
     {/*<h5 className="uk-padding uk-text-muted uk-padding-remove-top">Here is a range of services i offer for my clients</h5>*/} 
     <div className="uk-padding">
-     <ul className="uk-grid uk-child-width-1-2"> 
-      <li><div className="uk-card uk-padding-small service">Web Development</div></li> 
-      <li><div className="uk-card uk-padding-small service">Search Engine Optimization</div></li>
-      <li><div className="uk-card uk-padding-small service">Graphic Designs</div></li>
-      <li><div className="uk-card uk-padding-small service">UI UX design</div></li>
-      <li><div className="uk-card uk-padding-small service">Web Templates</div></li>
+     <ul className="uk-grid uk-child-width-1-2@s"> 
+      <li><span className="uk-card uk-padding-small service" data-aos="bounce-in">Web Development</span></li>  
+      <li><div className="uk-card uk-padding-small service" data-aos="bounce-in">Search Engine Optimization</div></li>
+      <li><div className="uk-card uk-padding-small service" data-aos="bounce-in">Graphic Designs</div></li>
+      <li><div className="uk-card uk-padding-small service" data-aos="bounce-in">UI UX design</div></li>
+      <li><div className="uk-card uk-padding-small service" data-aos="bounce-in">Web Templates</div></li>
       </ul>
     </div>
    </div>  
