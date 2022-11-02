@@ -86,7 +86,7 @@ return (
     </div> 
     <div id="bio"> 
     <h1>
-     <Typed strings={['Hi, I am Josiah.','I am creative.','I love design.','I love to develop.']}  typeSpeed={100} loop={true} startDelay={700} backSpeed={100}  />       
+     <Typed strings={['Hi, I am Josiah.','I build.','I  design.','I  develop.']}  typeSpeed={100} loop={true} startDelay={700} backSpeed={100}  />        
       </h1>      
     </div> 
     <div id="btns" data-uk-grid className="uk-grid">     
@@ -124,10 +124,10 @@ return (
      <div className="">
       <h2 className="uk-text-cente sticky">About Me</h2>
       <p className="uk-text-muted uk-padding uk-padding-remove-top">
-      hello <big>👋</big>, i am a fullstack web developer.<br />
-        i am passionate about my work, a problem solver who is willing to learn, a team player, i always want to be part of something greater. i like to think that i can rise to any challenge when given a chance.
-       <br />am well rounded but javascript is my wheelhouse.
-      </p>  
+      Hello <big className="uk-text-large">👋</big>, I am a fullstack web developer.<br />
+        I am passionate about my work, a problem solver who is willing to learn, a team player, I always want to be part of something greater. i like to think that i can rise to any challenge when given a chance.
+       <br />I am well rounded, but javascript is my wheelhouse.
+      </p>   
      </div> 
      <div id="experience" className="">
       <h2 className="sticky">Experience</h2> 
@@ -146,12 +146,12 @@ return (
         <li>i was involved in project management tasks</li>
        </ul>
       </div>*/}
-     </div>
+     </div> 
     </div>
     <div className="uk-width-1-3@m">
      <div id="skills" className="">
       <h2 className="sticky">Stack</h2>
-      <p className="uk-padding uk-text-muted uk-padding-remove-top">In the past few years and up until now, i have worked with a couple of technologies some of which are outlined below <big>👇.</big></p>  
+      <p className="uk-padding uk-text-muted uk-padding-remove-top">In the past few years and up until now, i have worked with a couple of technologies some of which are outlined below <big className="uk-text-large">👇.</big></p>  
       <h4 className="uk-text-muted uk-text-center">Front End</h4>
       <div className="uk-padding">
        <div uk-grid className="skills uk-grid uk-child-width-1-2  uk-child-width-1-3@s">
@@ -204,11 +204,11 @@ return (
       <li><div className="uk-card uk-padding-small service">Web Templates</div></li>
       </ul>
     </div>
-   </div>
+   </div>  
    
    <div id="projects">
     <h2 className="sticky">Projects</h2>
-    <h5 className="uk-padding uk-text-muted uk-padding-remove-top">below are some projects i have built personally just swipe and tap to view them.</h5>
+    <h5 className="uk-padding uk-text-muted uk-padding-remove-top">Checkout some projects i have built personally, just swipe and tap to view them.</h5> 
     <div className="uk-padding">
      <div>
       <div className="uk-slider-container-offset" data-uk-slider>
@@ -220,7 +220,7 @@ return (
           <Image src="/images/gomyweather.jpg"  width="400" height="400" className="card-img" alt="gomyweather"/>  
           </div>    
            <div className="uk-card-body uk-padding-small">
-            <h3 className="uk-card-title">gomyweather</h3>
+            <h3 className="uk-card-title">Gomyweather</h3>
             <p>using an api this app provides useful data about the weather conditions of over 200,000 cites in the world.</p>
             <div className="uk-text-right"><a href="https://gomyweather.netlify.app"> <button className="card-btn">check it out  <i className="bi-chevron-right"></i></button></a></div>       
            </div> 
@@ -232,7 +232,7 @@ return (
           <Image src="/images/jefi.jpg"  width="400" height="400" className="card-img" alt="jefi"/>   
           </div>
            <div className="uk-card-body uk-padding-small">
-            <h3 className="uk-card-title">jefi</h3>
+            <h3 className="uk-card-title">Jefi</h3>
             <p>an online shop.
              <br />order  a product and get it delivered to you(demonstration purposes only).</p> 
              <div className="uk-text-right"><a href="#"><button className="card-btn">check it out  <i className="bi-chevron-right"></i></button></a></div> 
@@ -245,7 +245,7 @@ return (
           <Image src="/images/payfum.jpg"  width="400" height="400" className="card-img" alt="payfum"/>   
           </div>
            <div className="uk-card-body uk-padding-small">
-            <h3 className="uk-card-title">payfum</h3> 
+            <h3 className="uk-card-title">Payfum</h3> 
             <p>expolore the landing page of a newly launched mobile money app (demonstration purposes only).</p> 
             <div className="uk-text-right"><a href="#"><button className="card-btn">check it out  <i className="bi-chevron-right"></i></button></a></div> 
            </div>
@@ -257,7 +257,7 @@ return (
           <Image src="/images/smat.jpg"  width="400" height="400" className="card-img" alt="smat"/>   
           </div>
            <div className="uk-card-body  uk-padding-small">  
-            <h3 className="uk-card-title">smat</h3>
+            <h3 className="uk-card-title">Smat</h3>
             <p>connect with work, friends and family. built on nextjs and socket.io.</p>   
             <div className="uk-text-right"><a href="#"><button className="card-btn">check it out  <i className="bi-chevron-right"></i></button></a></div> 
            </div> 
@@ -269,7 +269,7 @@ return (
           <Image src="/images/blup.jpg"  width="400" height="400" className="card-img" alt="blup"/>   
           </div> 
            <div className="uk-card-body uk-padding-small"> 
-            <h3 className="uk-card-title">blup</h3>
+            <h3 className="uk-card-title">Blup</h3>
             <p>play a fun game, pop some balls and relax.</p>
             <div className="uk-text-right"><a href="#"><button className="card-btn">check it out  <i className="bi-chevron-right"></i></button></a></div> 
            </div>
@@ -288,7 +288,7 @@ return (
    <div className="uk-grid uk-grid-collapse  uk-child-width-1-2@s"> 
    <div className="flex-center uk-hidden@s"><Image src="/images/lightbulb.png" height="300" width="300" alt="what's the big idea"/></div>   
    <div>  
-   <h3 className="uk-padding uk-text-muted uk-padding-remove-top">got an ideea??<br/>Dont sleep on it, lets build together</h3>      
+   <h3 className="uk-padding uk-text-muted uk-padding-remove-top">Got an ideea?<br/>Dont sleep on it, lets build together now!</h3>       
     <div className="uk-padding uk-text-center">   
        <Link href="hire-me"><a><button className="uk-button  uk-border-rounded hire-me-btn uk-width-expand uk-button-large">hire me now</button></a></Link>    
       </div>
