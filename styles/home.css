@@ -318,7 +318,8 @@ div {
 }
 #services .service {
   border: 1px solid lightgrey;
-  border-radius: .5rem; 
+  border-radius: .5rem;
+  display: inline-block; 
 }
 #projects {
  padding-bottom: 4rem;  

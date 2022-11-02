@@ -197,11 +197,11 @@ return (
     {/*<h5 className="uk-padding uk-text-muted uk-padding-remove-top">Here is a range of services i offer for my clients</h5>*/} 
     <div className="uk-padding">
      <ul className="uk-grid uk-child-width-1-2@s"> 
-      <li><span className="uk-card uk-padding-small service" data-aos="bounce-in">Web Development</span></li>  
-      <li><div className="uk-card uk-padding-small service" data-aos="bounce-in">Search Engine Optimization</div></li>
-      <li><div className="uk-card uk-padding-small service" data-aos="bounce-in">Graphic Designs</div></li>
-      <li><div className="uk-card uk-padding-small service" data-aos="bounce-in">UI UX design</div></li>
-      <li><div className="uk-card uk-padding-small service" data-aos="bounce-in">Web Templates</div></li>
+      <li><span className="uk-card uk-padding-small service" data-aos="zoom-out-up">Web Development</span></li>  
+      <li><span className="uk-card uk-padding-small service" data-aos="zoom-out-up">Search Engine Optimization</span></li>
+      <li><span className="uk-card uk-padding-small service" data-aos="zoom-out-up">Graphic Designs</span></li>
+      <li><span className="uk-card uk-padding-small service" data-aos="zoom-out-up">UI UX design</span></li>
+      <li><span className="uk-card uk-padding-small service" data-aos="zoom-out-up">Web Templates</span></li>
       </ul>
     </div>
    </div>  
