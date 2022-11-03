@@ -25,3 +25,6 @@ button:disabled {
 .swal {
   background: #F9F02F !important;  
 }
+input,textarea {
+  border-radius: .4rem; 
+}

@@ -90,8 +90,8 @@ export default function HireMe() {
 
     return (
  <div>
-  <div className="uk-padding-small flex-center">
-   <form onSubmit={handleSubmit}>
+  <div className="uk-padding-small flex-center" style={{background: '#f5f5f5'}}> 
+   <form onSubmit={handleSubmit} className="uk-card uk-box-shadow-medium uk-border-rounded uk-padding-small">   
     <legend className="uk-legend uk-padding-small">Hire me...</legend> 
     <div className="uk-grid uk-grid-collapse uk-child-width-1-2@m uk-width-expand uk-padding-small uk-padding-remove-horizontal uk-padding-remove-top">  
      <div className="uk-padding-small">
@@ -109,18 +109,19 @@ export default function HireMe() {
      <div className="uk-padding-small">
       <span className="uk-text-muted">What do you need<span style={ { color: 'red' }}>*</span></span>
       <select id="job" className="uk-select uk-input-large" onChange={placeJob} value={job}>
-       <option value=''>select an option</option>
+       <option value=''>Select an option</option>
        <option value="website">Website</option>
+       <option value="webapp">Webapp</option> 
        <option value="blog">Blog</option>
        <option value="store">Online Store</option>
        <option value="landing page">Landing Page</option>
        <option value="business page">Business Page</option>
-       <option value="other">other</option>
+       <option value="other">Other</option> 
       </select>
-      <div className="uk-padding-small" style={ { display: showDes }}>
+      <div className="uk-padding-small uk-padding-remove-horizontal" style={ { display: showDes }}>
        <span className="uk-text-muted">Give a brief description<span style={ { color: 'red' }}>*</span></span>
        <textarea id="description" className="uk-textarea" value={description} onChange={(e)=> setDescription(e.target.value)}></textarea>
-      </div>
+      </div> 
      </div>
      <div className="uk-padding-small">
       <span className="uk-text-muted">Budget Amount($)</span>

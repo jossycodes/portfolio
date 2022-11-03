@@ -260,7 +260,7 @@ div {
 } 
 
 .sticky.is-pinned {
- box-shadow: 6px 5px 7px #111;    
+ /*box-shadow: 6px 5px 7px #111;*/     
  transition: 0.2s; 
  border-left: 0.6rem solid #F9F02F; 
 }
