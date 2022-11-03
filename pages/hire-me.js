@@ -91,7 +91,7 @@ export default function HireMe() {
     return (
  <div>
   <div className="uk-padding-small flex-center" style={{background: '#f5f5f5'}}> 
-   <form onSubmit={handleSubmit} className="uk-card uk-box-shadow-medium uk-border-rounded uk-padding-small">   
+   <form onSubmit={handleSubmit} className="uk-card uk-box-shadow-medium uk-border-rounded uk-padding-small" style={{background: '#fff'}}>    
     <legend className="uk-legend uk-padding-small">Hire me...</legend> 
     <div className="uk-grid uk-grid-collapse uk-child-width-1-2@m uk-width-expand uk-padding-small uk-padding-remove-horizontal uk-padding-remove-top">  
      <div className="uk-padding-small">
