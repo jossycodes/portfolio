@@ -207,7 +207,7 @@ return (
    </div>  
    
    <div id="projects">
-    <h2 className="sticky">Projects</h2>
+    <h2 className="sticky">My Works</h2>
     <h5 className="uk-padding uk-text-muted uk-padding-remove-top">Checkout some projects i have built personally, just swipe and tap to view them.</h5> 
     <div className="uk-padding">
      <div>
@@ -221,7 +221,7 @@ return (
           </div>    
            <div className="uk-card-body uk-padding-small">
             <h3 className="uk-card-title">Gomyweather</h3>
-            <p>using an api this app provides useful data about the weather conditions of over 200,000 cites in the world.</p>
+            <p>Using an api this app provides useful data about the weather conditions of over 200,000 cites in the world.</p>
             <div className="uk-text-right"><a href="https://gomyweather.netlify.app"> <button className="card-btn">check it out  <i className="bi-chevron-right"></i></button></a></div>       
            </div> 
           </div>
@@ -233,7 +233,7 @@ return (
           </div>
            <div className="uk-card-body uk-padding-small">
             <h3 className="uk-card-title">Jefi</h3>
-            <p>an online shop.
+            <p>An online shop.
              <br />order  a product and get it delivered to you(demonstration purposes only).</p> 
              <div className="uk-text-right"><a href="#"><button className="card-btn">check it out  <i className="bi-chevron-right"></i></button></a></div> 
            </div>
@@ -246,7 +246,7 @@ return (
           </div>
            <div className="uk-card-body uk-padding-small">
             <h3 className="uk-card-title">Payfum</h3> 
-            <p>expolore the landing page of a newly launched mobile money app (demonstration purposes only).</p> 
+            <p>Expolore the landing page of a newly launched mobile money app (demonstration purposes only).</p> 
             <div className="uk-text-right"><a href="#"><button className="card-btn">check it out  <i className="bi-chevron-right"></i></button></a></div> 
            </div>
           </div>
@@ -258,7 +258,7 @@ return (
           </div>
            <div className="uk-card-body  uk-padding-small">  
             <h3 className="uk-card-title">Smat</h3>
-            <p>connect with work, friends and family. built on nextjs and socket.io.</p>   
+            <p>Connect with work, friends and family. built on nextjs and socket.io.</p>   
             <div className="uk-text-right"><a href="#"><button className="card-btn">check it out  <i className="bi-chevron-right"></i></button></a></div> 
            </div> 
           </div>
@@ -270,7 +270,7 @@ return (
           </div> 
            <div className="uk-card-body uk-padding-small"> 
             <h3 className="uk-card-title">Blup</h3>
-            <p>play a fun game, pop some balls and relax.</p>
+            <p>Play a fun game, pop some balls and relax.</p>
             <div className="uk-text-right"><a href="#"><button className="card-btn">check it out  <i className="bi-chevron-right"></i></button></a></div> 
            </div>
           </div>
@@ -299,7 +299,7 @@ return (
   <div id="footer">
   <form onSubmit={handleSubmit}>
    <div className="uk-padding-small uk-light flex-center socials"> 
-    <textarea id="msg" className="uk-width-1-2@m" placeholder="go on write something..."></textarea>
+    <textarea id="msg" className="uk-width-1-2@m" placeholder="Go on write something..."></textarea>
    </div>
    <div className="uk-padding-small uk-text-center">
     <input id="from" className="uk-input uk-border-rounded uk-width-1-2@m" placeholder="your email address..."></input>  
@@ -310,9 +310,10 @@ return (
   </form> 
    
    <div className="socials uk-padding-large">
-    <a href="mailto: josiahadeniy1@gmail.com"><span className="bi-envelope-fill"></span></a>
+    <!--<a href="mailto: josiahadeniy1@gmail.com"><span className="bi-envelope-fill"></span></a>-->
     <a href="https://github.com/jossycodes"><span className="bi-github"></span></a>
     <a href="https://www.linkedin.com/in/josiah-adeniyi-329168240"><span className="bi-linkedin"></span></a>
+    <a href="https://www.fiverr.com/s/0bGvDDL"><span className="bi-fiverr"></span></a>
    </div>
   </div>
  </div>    
