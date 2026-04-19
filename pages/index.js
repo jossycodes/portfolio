@@ -69,7 +69,7 @@ for (let i = 0; i < elms.length; i++) {
 return (   
  <div>
   <Head>
-   <title>Jossycodes</title>  
+   <title>Jossycodes Portfolio</title>  
   </Head> 
   <div id="profile">  
    <div id="me" className="uk-grid uk-grid-collapse">
@@ -87,22 +87,23 @@ return (
      <Image src="/images/me.png" alt="my picture" width="100" height="100"/>         
     </div> 
     <div id="bio"> 
-    <h1>
+    <h1 style={{minHeight: "2rem"}}>
      <Typewriter words={['Hi, I am Josiah.','I build.','I  design.','I develop.']} typeSpeed={100} loop={0} delaySpeed={700} deleteSpeed={100}
      />
-     
       </h1>      
     </div> 
     <div id="btns" data-uk-grid className="uk-grid">     
      <div className="uk-width-3-5@m uk-padding-small">    
       <Link href="hire-me"><a><button className="uk-button hire-me-btn
       uk-border-rounded uk-button-large uk-width-expand"><big>hire me
-      <ChevronRight size={16}/></big></button></a></Link>         
-     </div>       
+      <ChevronRight size={18}/></big></button></a></Link>         
+     </div>
+     
      <div className="uk-width-expand uk-padding-small">   
       <button className="uk-button uk-button-large uk-border-rounded
       uk-width-expand msg-me-btn" onClick={(()=>
-      {document.querySelector('#msg').focus()})}>message me <ChevronDown size={16}/></button>
+      {document.querySelector('#msg').focus()})}>message me <ChevronDown
+      size={18}/></button>
      </div>   
     </div>
     <div id="space" className="uk-hidden@s"></div> 
