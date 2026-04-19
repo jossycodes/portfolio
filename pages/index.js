@@ -11,6 +11,9 @@ import Typed from 'react-typed'
 export default function Home() {
   
 const [mailBtn,setMailBtn] = useState(false);
+const [name,setName] = useState(null)
+const [email,setEmail] = useState(null)
+const [msg,setMsg] = useState(null)
   
 useEffect(() => {
 aos.init({once: true});   
@@ -28,39 +31,38 @@ for (let i = 0; i < elms.length; i++) {
  const handleSubmit = async(e)=> {
   e.preventDefault(); 
   
-  let msg = document.querySelector('#msg');
-  let from = document.querySelector('#from');
+  if(!name) return new Toast("Please enter your name first",'info')
+  
+  if(!email) return new Toast("Please provide a valid email address", 'info')
+  
+  if(!msg) return new Toast("Please enter your message first")
+  
   
   const data = {
-   msg: msg.value,
-   from: from.value
-  }
-  
-  if(msg.value.length < 1){
-   msg.focus(); 
-    return Toast("Enter a message to send","warning")
-  }
-  if(from.value.length < 1) {
-  from.focus(); 
-    return Toast("Enter an email address","warning")
+   msg,
+   email,
+   name
   }
   
   setMailBtn(true);  
  
-  let response = await fetch('/api/mailer',{method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8'
-        }}); 
+  let response = await fetch('/api/mailer',{
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8'
+    }
+  }); 
   let status = await response.json();
-  if(status.sent) {
-    msg.value = ""
-    from.value = ""  
+  if(status.ok) {
+    setMsg(null)
+    setEmail(null)
+    setName(null)
     setMailBtn(false);
-   return Toast("Message sent successfully","success");
+   return Toast("Message Received, I'll reach out soon, Thank you","success");
   } else {
     setMailBtn(false);
-   return Toast("Message not sent, try again", "error");
+   return Toast("Message not sent, please try again", "error");
   }
 }  
  
@@ -298,11 +300,17 @@ return (
   </div>
   <div id="footer">
   <form onSubmit={handleSubmit}>
-   <div className="uk-padding-small uk-light flex-center socials"> 
-    <textarea id="msg" className="uk-width-1-2@m" placeholder="Go on write something..."></textarea>
+  
+    <div className="uk-padding-small uk-text-center">
+    <input value={name} onChange={(e)=> setName(e.target.value)} className="uk-input uk-border-rounded uk-width-1-2@m" placeholder="Enter your name here..."/>
    </div>
-   <div className="uk-padding-small uk-text-center">
-    <input id="from" className="uk-input uk-border-rounded uk-width-1-2@m" placeholder="your email address..."></input>  
+   
+   <div  className="uk-padding-small uk-light flex-center socials"> 
+    <textarea value={msg} onChange={(e)=> setMsg(e.target.value)}  className="uk-width-1-2@m" placeholder="Go on write something..."></textarea>
+   </div>
+   
+   <div  className="uk-padding-small uk-text-center">
+    <input value={email} onChange={(e)=> setEmail(e.target.value)} type='email' className="uk-input uk-border-rounded uk-width-1-2@m" placeholder="your email address..."></input>  
    </div>
    <div className="uk-text-center uk-padding-small">
     <button disabled={mailBtn} type="submit" className="uk-button uk-border-rounded uk-button-large uk-width-1-2@m">send <i className="bi-send-fill  send-btn"></i></button>   
@@ -310,7 +318,7 @@ return (
   </form> 
    
    <div className="socials uk-padding-large">
-    <!--<a href="mailto: josiahadeniy1@gmail.com"><span className="bi-envelope-fill"></span></a>-->
+    {/**<a href="mailto: josiahadeniy1@gmail.com"><span className="bi-envelope-fill"></span></a>**/}
     <a href="https://github.com/jossycodes"><span className="bi-github"></span></a>
     <a href="https://www.linkedin.com/in/josiah-adeniyi-329168240"><span className="bi-linkedin"></span></a>
     <a href="https://www.fiverr.com/s/0bGvDDL"><span className="bi-fiverr"></span></a>
