@@ -6,7 +6,7 @@ import aos from 'aos'
 import uikit from 'uikit'
 import Toast from '../components/toasts'
 import { Typewriter } from 'react-simple-typewriter';
-
+import {ChevronRight, ChevronDown} from 'lucide-react'
   
 export default function Home() {
   
@@ -95,10 +95,14 @@ return (
     </div> 
     <div id="btns" data-uk-grid className="uk-grid">     
      <div className="uk-width-3-5@m uk-padding-small">    
-      <Link href="hire-me"><a><button className="uk-button hire-me-btn uk-border-rounded uk-button-large uk-width-expand"><big>hire me <b><i className="bi-chevron-double-right"></i></b></big></button></a></Link>         
+      <Link href="hire-me"><a><button className="uk-button hire-me-btn
+      uk-border-rounded uk-button-large uk-width-expand"><big>hire me
+      <ChevronRight size={16}/></big></button></a></Link>         
      </div>       
      <div className="uk-width-expand uk-padding-small">   
-      <button className="uk-button uk-button-large uk-border-rounded uk-width-expand msg-me-btn" onClick={(()=> {document.querySelector('#msg').focus()})}>message me <i className="bi-chevron-down"></i></button>
+      <button className="uk-button uk-button-large uk-border-rounded
+      uk-width-expand msg-me-btn" onClick={(()=>
+      {document.querySelector('#msg').focus()})}>message me <ChevronDown size={16}/></button>
      </div>   
     </div>
     <div id="space" className="uk-hidden@s"></div> 
