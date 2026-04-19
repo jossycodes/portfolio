@@ -5,7 +5,7 @@ import {useEffect,useState} from 'react'
 import aos from 'aos'
 import uikit from 'uikit'
 import Toast from '../components/toasts'
-import Typed from 'react-typed' 
+import { Typewriter } from 'react-simple-typewriter';
 
   
 export default function Home() {
@@ -88,7 +88,9 @@ return (
     </div> 
     <div id="bio"> 
     <h1>
-     <Typed strings={['Hi, I am Josiah.','I build.','I  design.','I  develop.']}  typeSpeed={100} loop={true} startDelay={700} backSpeed={100}  />        
+     <Typewriter words={['Hi, I am Josiah.','I build.','I  design.','I develop.']} typeSpeed={100} loop={0} delaySpeed={700} deleteSpeed={100}
+     />
+     
       </h1>      
     </div> 
     <div id="btns" data-uk-grid className="uk-grid">     
@@ -306,7 +308,7 @@ return (
    </div>
    
    <div  className="uk-padding-small uk-light flex-center socials"> 
-    <textarea value={msg} onChange={(e)=> setMsg(e.target.value)}  className="uk-width-1-2@m" placeholder="Go on write something..."></textarea>
+    <textarea id="msg" value={msg} onChange={(e)=> setMsg(e.target.value)}  className="uk-width-1-2@m" placeholder="Go on write something..."></textarea>
    </div>
    
    <div  className="uk-padding-small uk-text-center">
