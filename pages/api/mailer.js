@@ -16,8 +16,8 @@ export default async function main(req, res) {
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: 'edna32@ethereal.email',
-      pass: 'NnWfvFzhhsazMsY9ZC',
+      user: 'miller4@ethereal.email',
+      pass: 'Zk5eCSDaPNTYuAP481',
     },
   });
 
