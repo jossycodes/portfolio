@@ -1,73 +1,73 @@
 import Head from 'next/head'
 import Image from 'next/future/image'
-import Link from 'next/link'  
-import {useEffect,useState} from 'react'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import aos from 'aos'
 import uikit from 'uikit'
 import Toast from '../components/toasts'
 import { Typewriter } from 'react-simple-typewriter';
-import {ChevronRight, ChevronDown} from 'lucide-react'
-  
+import { ChevronRight, ChevronDown } from 'lucide-react'
+
 export default function Home() {
-  
-const [mailBtn,setMailBtn] = useState(false);
-const [name,setName] = useState(null)
-const [email,setEmail] = useState(null)
-const [msg,setMsg] = useState(null)
-  
-useEffect(() => {
-aos.init({once: true});   
 
-const elms = document.querySelectorAll(".sticky"); 
-const observer = new IntersectionObserver(
- ([e]) => e.target.classList.toggle("is-pinned", e.intersectionRatio < 1), { threshold: [1] }    
-);   
- 
-for (let i = 0; i < elms.length; i++) {
- observer.observe(elms[i]);
-}
-},[])
+  const [mailBtn, setMailBtn] = useState(false);
+  const [name, setName] = useState(null)
+  const [email, setEmail] = useState(null)
+  const [msg, setMsg] = useState(null)
 
- const handleSubmit = async(e)=> {
-  e.preventDefault(); 
-  
-  if(!name) return new Toast("Please enter your name first",'info')
-  
-  if(!email) return new Toast("Please provide a valid email address", 'info')
-  
-  if(!msg) return new Toast("Please enter your message first")
-  
-  
-  const data = {
-   msg,
-   email,
-   name
-  }
-  
-  setMailBtn(true);  
- 
-  let response = await fetch('/api/mailer',{
-    method: 'POST',
-    body: JSON.stringify(data),
-    headers: {
-      'Content-type': 'application/json; charset=UTF-8'
+  useEffect(() => {
+    aos.init({ once: true });
+
+    const elms = document.querySelectorAll(".sticky");
+    const observer = new IntersectionObserver(
+      ([e]) => e.target.classList.toggle("is-pinned", e.intersectionRatio < 1), { threshold: [1] }
+    );
+
+    for (let i = 0; i < elms.length; i++) {
+      observer.observe(elms[i]);
     }
-  }); 
-  let status = await response.json();
-  if(status.ok) {
-    setMsg(null)
-    setEmail(null)
-    setName(null)
-    setMailBtn(false);
-   return Toast("Message Received, I'll reach out soon, Thank you","success");
-  } else {
-    setMailBtn(false);
-   return Toast("Message not sent, please try again", "error");
+  }, [])
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!name) return new Toast("Please enter your name first", 'info')
+
+    if (!email) return new Toast("Please provide a valid email address", 'info')
+
+    if (!msg) return new Toast("Please enter your message first")
+
+
+    const data = {
+      msg,
+      email,
+      name
+    }
+
+    setMailBtn(true);
+
+    let response = await fetch('/api/mailer', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8'
+      }
+    });
+    let status = await response.json();
+    if (status.ok) {
+      setMsg(null)
+      setEmail(null)
+      setName(null)
+      setMailBtn(false);
+      return Toast("Message Received, I'll reach out soon, Thank you", "success");
+    } else {
+      setMailBtn(false);
+      return Toast("Message not sent, please try again", "error");
+    }
   }
-}  
- 
-return (   
- <div>
+
+  return (
+    <div>
   <Head>
    <title>Jossycodes Portfolio</title>  
   </Head> 
@@ -87,7 +87,7 @@ return (
      <Image src="/images/me.png" alt="my picture" width="100" height="100"/>         
     </div> 
     <div id="bio"> 
-    <h1 style={{minHeight: "2rem"}}>
+    <h1 style={{minHeight: "4rem"}}>
      <Typewriter words={['Hi, I am Josiah.','I build.','I  design.','I develop.']} typeSpeed={100} loop={0} delaySpeed={700} deleteSpeed={100}
      />
       </h1>      
@@ -331,6 +331,6 @@ return (
     <a href="https://www.fiverr.com/s/0bGvDDL"><span className="bi-fiverr"></span></a>
    </div>
   </div>
- </div>    
- )
-} 
+ </div>
+  )
+}

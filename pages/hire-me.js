@@ -55,7 +55,7 @@ export default function HireMe() {
         return Toast("Describe what you want", "info");
       } 
       let info = {
-        from: email,
+        email,
         subject: "New job alert",
         msg: `Hello i am ${name} i want you to build a ${(job == 'other')? description: job} for me, my budget is ${budget}\n ${msg}\n ${company}`
       }
