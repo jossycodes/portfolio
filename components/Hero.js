@@ -32,47 +32,47 @@ const slideVariants = {
 
 
 function PausePlayButton({ isPaused, togglePause }) {
-    const [isHovered, setIsHovered] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
 
-    return (
-        <motion.button
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            onClick={togglePause}
-            layout
-            transition={{ type: 'spring', stiffness: 400, damping: 32 }}
-            className="relative flex items-center cursor-pointer z-20 overflow-hidden rounded-full hover:border-none focus:border-none"
-            style={{
-                backdropFilter: 'blur(12px)',
-                background: 'rgba(255,255,255,0.05)',
-                border: '1px solid rgba(255,255,255,0.08)',
-                padding: '10px',
-            }}
-        >
-            <motion.div layout className="flex items-center justify-center w-6 h-6 flex-shrink-0">
-                {isPaused ? (
-                    <Play size={18} className="text-white" />
-                ) : (
-                    <Pause size={18} className="text-white" />
-                )}
-            </motion.div>
+  return (
+    <motion.button
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onClick={togglePause}
+      layout
+      transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+      className="relative flex items-center cursor-pointer z-20 overflow-hidden rounded-full hover:border-none focus:border-none"
+      style={{
+        backdropFilter: 'blur(12px)',
+        background: 'rgba(255,255,255,0.05)',
+        border: '1px solid rgba(255,255,255,0.08)',
+        padding: '10px',
+      }}
+    >
+      <motion.div layout className="flex items-center justify-center w-6 h-6 flex-shrink-0">
+        {isPaused ? (
+          <Play size={18} className="text-white" />
+        ) : (
+          <Pause size={18} className="text-white" />
+        )}
+      </motion.div>
 
-            <AnimatePresence initial={false}>
-                {isHovered && (
-                    <motion.span
-                        key="label"
-                        initial={{ opacity: 0, width: 0, marginLeft: 0 }}
-                        animate={{ opacity: 1, width: 'auto', marginLeft: 10 }}
-                        exit={{ opacity: 0, width: 0, marginLeft: 0 }}
-                        transition={{ duration: 0.35, ease: [0.34, 1.56, 0.64, 1] }}
-                        className="text-lg font-medium text-white whitespace-nowrap overflow-hidden"
-                    >
-                        {isPaused ? 'PLAY' : 'PAUSE'}
-                    </motion.span>
-                )}
-            </AnimatePresence>
-        </motion.button>
-    )
+      <AnimatePresence initial={false}>
+        {isHovered && (
+          <motion.span
+            key="label"
+            initial={{ opacity: 0, width: 0, marginLeft: 0 }}
+            animate={{ opacity: 1, width: 'auto', marginLeft: 10 }}
+            exit={{ opacity: 0, width: 0, marginLeft: 0 }}
+            transition={{ duration: 0.35, ease: [0.34, 1.56, 0.64, 1] }}
+            className="text-lg font-medium text-white whitespace-nowrap overflow-hidden"
+          >
+            {isPaused ? 'PLAY' : 'PAUSE'}
+          </motion.span>
+        )}
+      </AnimatePresence>
+    </motion.button>
+  )
 }
 
 
@@ -116,7 +116,7 @@ export default function Hero() {
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden px-4">
       {/* Base backdrop with subtle gradient — lowered alpha on the solid fill so the
           fixed BackgroundDots layer behind the page shows through */}
-      <div 
+      <div
         className="absolute inset-0 -z-20"
         style={{
           background: 'radial-gradient(ellipse at 20% 50%, rgba(236,72,153,0.06) 0%, transparent 60%), radial-gradient(ellipse at 80% 50%, rgba(59,130,246,0.06) 0%, transparent 60%), rgba(9,9,11,0.55)'
@@ -232,9 +232,14 @@ function SlideIntro({ accent }) {
           style={{ borderColor: accent.solid }}
         >
           <span className="relative">
-            
-            Open to work
-            <span className="absolute top-1.5 -right-4 w-2 h-2 rounded-full bg-green-500 animate-ping" />
+
+            <span className='font-bold text-white'>OPEN TO WORK</span>
+            <span className="absolute top-1.5 -right-4 w-2 h-2 rounded-full bg-sky-400 animate-ping"
+              style={{
+                boxShadow: '0 0 15px 5px rgba(0, 191, 255, 0.8), 0 0 30px 10px rgba(0, 191, 255, 0.4)',
+                backgroundColor: '#00d4ff',
+              }}
+            />
           </span>
         </motion.a>
 
@@ -280,12 +285,12 @@ function SlideIntro({ accent }) {
             style={{ background: accent.grad }}
           />
           <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden border-4 shadow-2xl" style={{ borderColor: accent.soft }}>
-            <Image 
-              src="/images/me.png" 
-              alt="Josiah Adeniyi" 
-              fill 
-              className="object-cover" 
-              priority 
+            <Image
+              src="/images/me.png"
+              alt="Josiah Adeniyi"
+              fill
+              className="object-cover"
+              priority
               quality={90}
               sizes="(max-width: 768px) 288px, 384px"
             />

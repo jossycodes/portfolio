@@ -79,7 +79,7 @@ export default function SkillsGrid() {
                       transition: { type: 'spring', stiffness: 300 }
                     }}
                     viewport={{ once: true }}
-                    className="group relative p-5 rounded-2xl text-center transition-all duration-300 hover:shadow-2xl bg-zinc-900/50 backdrop-blur-sm border-2 w-[120px] lg:w-[200px]"
+                    className="group relative p-5 rounded-2xl text-center transition-all duration-300 hover:shadow-2xl bg-zinc-900/50 backdrop-blur-sm border-2 w-[auto] lg:w-[200px]"
                     style={{
                       borderColor: skill.color,
                       boxShadow: `0 0 30px ${skill.color}20, inset 0 0 30px ${skill.color}10`,
@@ -97,8 +97,8 @@ export default function SkillsGrid() {
                         <Image
                           src={skill.icon}
                           alt={skill.name}
-                          width={56}
-                          height={56}
+                          width={45}
+                          height={45}
                           className="object-contain"
                         />
                       </div>

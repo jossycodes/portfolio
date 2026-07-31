@@ -83,3 +83,18 @@
 .animate-twinkle {
     animation: twinkle 2s ease-in-out infinite;
 }
+
+/* backdrop-filter is expensive to composite on mobile, and .glass/.glass-light
+   are used dozens of times across the page (cards, buttons, panels). Swap it
+   for a solid tinted background below the desktop breakpoint instead. */
+@media (max-width: 768px) {
+  .glass {
+    background-color: rgba(24, 24, 27, 0.8);
+    backdrop-filter: none;
+  }
+
+  .glass-light {
+    background-color: rgba(255, 255, 255, 0.08);
+    backdrop-filter: none;
+  }
+}
