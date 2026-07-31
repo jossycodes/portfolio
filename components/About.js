@@ -9,10 +9,9 @@ const stats = [
     { icon: Award, label: 'Certifications', value: '3+' },
 ]
 
-const skillsList = [
-    'Fullstack development with React, Next.js, Node.js',
-    'UI/UX design with attention to detail',
-    'Database management (MongoDB, MySQL)',
+// Kept to traits that aren't already covered by the Services / Tech Stack
+// sections — no point restating "React, Node, MongoDB" a second time.
+const workingStyle = [
     'Team player & collaborative problem solver',
     'Continuous learner & self-improvement',
     'Agile development & project management',
@@ -149,7 +148,7 @@ export default function About() {
                         viewport={{ once: true, amount: 0.2 }}
                         className="glass p-8 rounded-2xl"
                     >
-                        <h4 className="text-xl font-semibold mb-4">What I Bring to the Table</h4>
+                        <h4 className="text-xl font-semibold mb-4">How I Work</h4>
                         <motion.ul
                             className="space-y-3 text-zinc-400"
                             initial="hidden"
@@ -160,7 +159,7 @@ export default function About() {
                                 visible: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
                             }}
                         >
-                            {skillsList.map((item, index) => (
+                            {workingStyle.map((item, index) => (
                                 <motion.li
                                     key={index}
                                     variants={{
