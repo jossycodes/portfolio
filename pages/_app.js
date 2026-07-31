@@ -1,10 +1,6 @@
-import '../styles/globals.css'
-import 'uikit/dist/css/uikit.css'
-import 'aos/dist/aos.css'
-import '../styles/home.css' 
+// pages/_app.js
+import '@/styles/globals.css'
 
-function MyApp({ Component, pageProps }) {
+export default function App({ Component, pageProps }) {
   return <Component {...pageProps} />
 }
-
-export default MyApp

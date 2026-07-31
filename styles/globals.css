@@ -1,30 +1,85 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+/* styles/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --primary: 346 80% 60%;
+  }
+
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-zinc-950 text-zinc-100 antialiased;
+  }
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-* {
-  box-sizing: border-box;
+::-webkit-scrollbar-track {
+  @apply bg-zinc-900;
 }
-.flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center; 
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary/50 rounded-full;
 }
-button:disabled {
-  background: lightgrey !important;  
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary;
 }
-.swal {
-  background: #F9F02F !important;  
+
+/* Glassmorphism */
+.glass {
+  @apply bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50;
 }
-input,textarea {
-  border-radius: .4rem; 
+
+.glass-light {
+  @apply bg-white/5 backdrop-blur-sm border border-white/10;
+}
+
+/* Gradient Text */
+.gradient-text {
+  @apply bg-gradient-to-r from-primary via-pink-500 to-primary bg-clip-text text-transparent bg-[length:300%_300%] animate-[gradient_6s_ease-in-out_infinite];
+}
+
+@keyframes gradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Animation Utilities */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes glow {
+  0%, 100% { filter: drop-shadow(0 0 10px rgba(233, 69, 96, 0.3)); }
+  50% { filter: drop-shadow(0 0 20px rgba(233, 69, 96, 0.6)); }
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.8; }
+}
+
+.animate-twinkle {
+    animation: twinkle 2s ease-in-out infinite;
 }
