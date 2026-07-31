@@ -9,7 +9,7 @@ import Image from 'next/image'
 import { socialLinks } from './socialIcons'
 
 const ease = [0.22, 1, 0.36, 1]
-const SLIDE_DURATIONS = [6000, 6000, 8000]
+const SLIDE_DURATIONS = [12000, 6000, 8000]
 
 const accents = [
   { solid: '#ec4899', soft: 'rgba(236,72,153,0.18)', grad: 'linear-gradient(90deg,#f9a8d4,#ec4899)' },

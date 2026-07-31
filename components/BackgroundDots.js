@@ -10,11 +10,12 @@ export default function BackgroundDots({ count = 50 }) {
         return Array.from({ length: count }, (_, i) => ({
             id: i,
             left: rand(0, 100),
+            top: rand(0, 100), // scattered anywhere across the full page height
             size: rand(1.5, 3.5),
-            duration: rand(14, 28),
-            delay: rand(0, 20),
-            rise: rand(100, 140), // vh travelled per cycle
-            drift: rand(-30, 30), // px of side-to-side sway
+            duration: rand(6, 14),
+            delay: rand(0, 14),
+            rise: rand(40, 90), // px — a short local drift, not a full-page journey
+            drift: rand(-20, 20), // px of side-to-side sway
             maxOpacity: rand(0.35, 0.9),
         }))
     }, [count])
@@ -27,11 +28,12 @@ export default function BackgroundDots({ count = 50 }) {
                     className="dot"
                     style={{
                         left: `${dot.left}%`,
+                        top: `${dot.top}%`,
                         width: `${dot.size}px`,
                         height: `${dot.size}px`,
                         animationDuration: `${dot.duration}s`,
                         animationDelay: `-${dot.delay}s`,
-                        '--rise': `${dot.rise}vh`,
+                        '--rise': `${dot.rise}px`,
                         '--drift': `${dot.drift}px`,
                         '--max-opacity': dot.maxOpacity,
                     }}
@@ -40,7 +42,6 @@ export default function BackgroundDots({ count = 50 }) {
             <style jsx>{`
                 .dot {
                     position: absolute;
-                    bottom: -5%;
                     border-radius: 9999px;
                     background: white;
                     opacity: 0;
