@@ -1,13 +1,28 @@
 // components/BackgroundDots.jsx
-import { useMemo } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 
 function rand(min, max) {
     return Math.random() * (max - min) + min
 }
 
-export default function BackgroundDots({ count = 50 }) {
+export default function BackgroundDots({ count = 50, mobileCount = 18 }) {
+    // Box-shadow blur was the single biggest cost here — the browser has to
+    // repaint a blurred halo around every dot on every frame, even though
+    // the shadow itself never changes. Dropping it (and cutting how many
+    // dots render on small screens) is what actually moves the needle on
+    // mobile; the CSS keyframe animation itself is cheap.
+    const [effectiveCount, setEffectiveCount] = useState(count)
+
+    useEffect(() => {
+        const mq = window.matchMedia('(max-width: 768px)')
+        const apply = () => setEffectiveCount(mq.matches ? mobileCount : count)
+        apply()
+        mq.addEventListener('change', apply)
+        return () => mq.removeEventListener('change', apply)
+    }, [count, mobileCount])
+
     const dots = useMemo(() => {
-        return Array.from({ length: count }, (_, i) => ({
+        return Array.from({ length: effectiveCount }, (_, i) => ({
             id: i,
             left: rand(0, 100),
             top: rand(0, 100), // scattered anywhere across the full page height
@@ -18,7 +33,7 @@ export default function BackgroundDots({ count = 50 }) {
             drift: rand(-20, 20), // px of side-to-side sway
             maxOpacity: rand(0.35, 0.9),
         }))
-    }, [count])
+    }, [effectiveCount])
 
     return (
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0" aria-hidden="true">
@@ -45,7 +60,7 @@ export default function BackgroundDots({ count = 50 }) {
                     border-radius: 9999px;
                     background: white;
                     opacity: 0;
-                    box-shadow: 0 0 6px rgba(255, 255, 255, 0.7);
+                    will-change: transform, opacity;
                     animation-name: rise-twinkle;
                     animation-timing-function: ease-in-out;
                     animation-iteration-count: infinite;

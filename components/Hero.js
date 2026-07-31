@@ -9,7 +9,7 @@ import Image from 'next/image'
 import { socialLinks } from './socialIcons'
 
 const ease = [0.22, 1, 0.36, 1]
-const SLIDE_DURATIONS = [12000, 6000, 8000]
+const SLIDE_DURATIONS = [6000, 6000, 8000]
 
 const accents = [
   { solid: '#ec4899', soft: 'rgba(236,72,153,0.18)', grad: 'linear-gradient(90deg,#f9a8d4,#ec4899)' },
@@ -24,9 +24,9 @@ const slideThemes = [
 ]
 
 const slideVariants = {
-  enter: { opacity: 0, x: 80, filter: 'blur(4px)' },
-  center: { opacity: 1, x: 0, filter: 'blur(0px)' },
-  exit: { opacity: 0, x: -80, filter: 'blur(4px)' },
+  enter: { opacity: 0, x: 80 },
+  center: { opacity: 1, x: 0 },
+  exit: { opacity: 0, x: -80 },
 }
 
 
@@ -79,6 +79,15 @@ function PausePlayButton({ isPaused, togglePause }) {
 export default function Hero() {
   const [active, setActive] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)')
+    const apply = () => setIsMobile(mq.matches)
+    apply()
+    mq.addEventListener('change', apply)
+    return () => mq.removeEventListener('change', apply)
+  }, [])
 
   useEffect(() => {
     if (isPaused) return
@@ -136,22 +145,24 @@ export default function Hero() {
         />
       ))}
 
-      {/* Ambient blobs */}
+      {/* Ambient blobs — smaller blur radius and no position tween on mobile,
+          since animating a large blur is one of the costliest things a
+          mobile GPU can be asked to do continuously */}
       <motion.div
-        className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl -z-10"
+        className={`absolute top-1/4 left-1/4 rounded-full -z-10 ${isMobile ? 'w-56 h-56 blur-2xl' : 'w-96 h-96 blur-3xl'}`}
         animate={{
           backgroundColor: accent.soft,
-          x: active === 0 ? 0 : active === 1 ? 60 : -40,
-          y: active === 0 ? 0 : active === 1 ? -30 : 40,
+          x: isMobile ? 0 : active === 0 ? 0 : active === 1 ? 60 : -40,
+          y: isMobile ? 0 : active === 0 ? 0 : active === 1 ? -30 : 40,
         }}
         transition={{ duration: 1.8, ease }}
       />
       <motion.div
-        className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full blur-3xl -z-10"
+        className={`absolute bottom-1/4 right-1/4 rounded-full -z-10 ${isMobile ? 'w-56 h-56 blur-2xl' : 'w-96 h-96 blur-3xl'}`}
         animate={{
           backgroundColor: accent.soft,
-          x: active === 0 ? 0 : active === 1 ? -50 : 50,
-          y: active === 0 ? 0 : active === 1 ? 30 : -30,
+          x: isMobile ? 0 : active === 0 ? 0 : active === 1 ? -50 : 50,
+          y: isMobile ? 0 : active === 0 ? 0 : active === 1 ? 30 : -30,
         }}
         transition={{ duration: 1.8, ease, delay: 0.1 }}
       />
