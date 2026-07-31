@@ -68,7 +68,7 @@ export default function Projects() {
 
     const stageRef = useRef(null)
     const controlsRef = useRef(null)
-    const dragState = useRef({ startX: 0, startSteps: 0 })
+    const panStartSteps = useRef(0)
 
     // keep the ring proportional to the available width
     useEffect(() => {
@@ -99,23 +99,25 @@ export default function Projects() {
         settle(target)
     }
 
-    const onPointerDown = (e) => {
-        setDragging(true)
+    // px of drag needed to move one card slot
+    const pxPerStep = radiusX * 0.7
+
+    const onPanStart = () => {
         controlsRef.current?.stop()
-        dragState.current = { startX: e.clientX, startSteps: steps }
-        e.currentTarget.setPointerCapture(e.pointerId)
+        panStartSteps.current = steps
+        setDragging(true)
     }
 
-    const onPointerMove = (e) => {
-        if (!dragging) return
-        const dx = e.clientX - dragState.current.startX
-        setSteps(dragState.current.startSteps + dx / (radiusX * 0.7))
+    const onPan = (e, info) => {
+        setSteps(panStartSteps.current + info.offset.x / pxPerStep)
     }
 
-    const onPointerUp = () => {
-        if (!dragging) return
+    const onPanEnd = (e, info) => {
         setDragging(false)
-        settle(Math.round(steps))
+        // fold in release velocity so a fast flick carries past the nearest
+        // slot instead of always snapping to whatever's closest
+        const flingSteps = Math.max(-2, Math.min(2, (info.velocity.x / pxPerStep) * 0.15))
+        settle(Math.round(steps + flingSteps))
     }
 
     const prev = () => goTo(mod(active + 1, n))
@@ -137,14 +139,13 @@ export default function Projects() {
                     <p className="text-zinc-400 max-w-2xl mx-auto">Some projects I've built personally</p>
                 </motion.div>
 
-                <div
+                <motion.div
                     ref={stageRef}
                     className="relative mx-auto select-none touch-none cursor-grab active:cursor-grabbing"
                     style={{ height: 420 }}
-                    onPointerDown={onPointerDown}
-                    onPointerMove={onPointerMove}
-                    onPointerUp={onPointerUp}
-                    onPointerCancel={onPointerUp}
+                    onPanStart={onPanStart}
+                    onPan={onPan}
+                    onPanEnd={onPanEnd}
                 >
                     {projects.map((project, i) => {
                         const angle = (i + steps) * angleStep
@@ -156,105 +157,105 @@ export default function Projects() {
                         const zIndex = Math.round(depth * 100)
                         const isFront = i === active && depth > 0.98
 
-                       return (
-    <div
-        key={project.title}
-        onClick={() => !dragging && !isFront && goTo(i)}
-        className="absolute top-1/2 left-1/2"
-        style={{
-            transform: `translate(-50%, -50%) translate(${x}px, ${y}px) scale(${scale})`,
-            zIndex,
-            opacity,
-            filter: depth < 0.6 ? `blur(${(1 - depth) * 1.5}px)` : 'none',
-            pointerEvents: depth < -0.2 ? 'none' : 'auto',
-        }}
-    >
-        <motion.div
-            className={`glass rounded-xl overflow-hidden w-72 ${
-                isFront ? 'shadow-xl shadow-primary/10 cursor-default' : 'cursor-pointer'
-            }`}
-            animate={{
-                scale: isFront ? 1.02 : 1,
-                boxShadow: isFront 
-                    ? '0 20px 60px rgba(233, 69, 96, 0.15)' 
-                    : '0 0 0 0 rgba(233, 69, 96, 0)',
-                borderColor: isFront ? 'rgba(233, 69, 96, 0.3)' : 'rgba(255,255,255,0.05)',
-            }}
-            transition={{
-                duration: 0.4,
-                ease: [0.22, 1, 0.36, 1],
-            }}
-        >
-            <div className="relative h-40 overflow-hidden">
-                <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    draggable={false}
-                    className="object-cover pointer-events-none"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent" />
-            </div>
-
-            <div className="p-5">
-                <h3 className="text-lg font-semibold mb-1">{project.title}</h3>
-
-                <AnimatePresence mode="wait">
-                    {isFront && (
-                        <motion.div
-                            key="project-details"
-                            initial={{ opacity: 0, y: -10, height: 0 }}
-                            animate={{ 
-                                opacity: 1, 
-                                y: 0, 
-                                height: 'auto',
-                                transition: {
-                                    duration: 0.35,
-                                    delay: 0.05,
-                                    ease: [0.22, 1, 0.36, 1]
-                                }
-                            }}
-                            exit={{ 
-                                opacity: 0, 
-                                y: 10, 
-                                height: 0,
-                                transition: {
-                                    duration: 0.25,
-                                    ease: [0.22, 1, 0.36, 1]
-                                }
-                            }}
-                        >
-                            <p className="text-zinc-400 text-sm mb-3">{project.description}</p>
-                            <div className="flex flex-wrap gap-2 mb-3">
-                                {project.tags.map((tag) => (
-                                    <span
-                                        key={tag}
-                                        className="px-3 py-1 text-xs rounded-full glass text-zinc-300"
-                                    >
-                                        {tag}
-                                    </span>
-                                ))}
-                            </div>
-                            {project.live && project.live !== '#' && (
-                                <a
-                                    href={project.live}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    onClick={(e) => e.stopPropagation()}
-                                    className="flex items-center gap-1 text-sm text-primary hover:text-primary/80 transition"
+                        return (
+                            <div
+                                key={project.title}
+                                onClick={() => !dragging && !isFront && goTo(i)}
+                                className="absolute top-1/2 left-1/2"
+                                style={{
+                                    transform: `translate(-50%, -50%) translate(${x}px, ${y}px) scale(${scale})`,
+                                    zIndex,
+                                    opacity,
+                                    filter: depth < 0.6 ? `blur(${(1 - depth) * 1.5}px)` : 'none',
+                                    pointerEvents: depth < -0.2 ? 'none' : 'auto',
+                                }}
+                            >
+                                <motion.div
+                                    className={`glass rounded-xl overflow-hidden w-72 ${
+                                        isFront ? 'shadow-xl shadow-primary/10 cursor-default' : 'cursor-pointer'
+                                    }`}
+                                    animate={{
+                                        scale: isFront ? 1.02 : 1,
+                                        boxShadow: isFront
+                                            ? '0 20px 60px rgba(233, 69, 96, 0.15)'
+                                            : '0 0 0 0 rgba(233, 69, 96, 0)',
+                                        borderColor: isFront ? 'rgba(233, 69, 96, 0.3)' : 'rgba(255,255,255,0.05)',
+                                    }}
+                                    transition={{
+                                        duration: 0.4,
+                                        ease: [0.22, 1, 0.36, 1],
+                                    }}
                                 >
-                                    <ExternalLink size={14} /> Live Demo
-                                </a>
-                            )}
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-            </div>
-        </motion.div>
-    </div>
-)
+                                    <div className="relative h-40 overflow-hidden">
+                                        <Image
+                                            src={project.image}
+                                            alt={project.title}
+                                            fill
+                                            draggable={false}
+                                            className="object-cover pointer-events-none"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent" />
+                                    </div>
+
+                                    <div className="p-5">
+                                        <h3 className="text-lg font-semibold mb-1">{project.title}</h3>
+
+                                        <AnimatePresence mode="wait">
+                                            {isFront && (
+                                                <motion.div
+                                                    key="project-details"
+                                                    initial={{ opacity: 0, y: -10, height: 0 }}
+                                                    animate={{
+                                                        opacity: 1,
+                                                        y: 0,
+                                                        height: 'auto',
+                                                        transition: {
+                                                            duration: 0.35,
+                                                            delay: 0.05,
+                                                            ease: [0.22, 1, 0.36, 1],
+                                                        },
+                                                    }}
+                                                    exit={{
+                                                        opacity: 0,
+                                                        y: 10,
+                                                        height: 0,
+                                                        transition: {
+                                                            duration: 0.25,
+                                                            ease: [0.22, 1, 0.36, 1],
+                                                        },
+                                                    }}
+                                                >
+                                                    <p className="text-zinc-400 text-sm mb-3">{project.description}</p>
+                                                    <div className="flex flex-wrap gap-2 mb-3">
+                                                        {project.tags.map((tag) => (
+                                                            <span
+                                                                key={tag}
+                                                                className="px-3 py-1 text-xs rounded-full glass text-zinc-300"
+                                                            >
+                                                                {tag}
+                                                            </span>
+                                                        ))}
+                                                    </div>
+                                                    {project.live && project.live !== '#' && (
+                                                        <a
+                                                            href={project.live}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            onClick={(e) => e.stopPropagation()}
+                                                            className="flex items-center gap-1 text-sm text-primary hover:text-primary/80 transition"
+                                                        >
+                                                            <ExternalLink size={14} /> Live Demo
+                                                        </a>
+                                                    )}
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
+                                    </div>
+                                </motion.div>
+                            </div>
+                        )
                     })}
-                </div>
+                </motion.div>
 
                 <div className="flex items-center justify-center gap-6 mt-6">
                     <button
