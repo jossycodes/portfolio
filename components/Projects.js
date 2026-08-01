@@ -23,6 +23,13 @@ const projects = [
         live: 'https://cookblock.vercel.app',
     },
     {
+        title: 'Color Ginie',
+        description: 'Color picking tool, color wheel and mode selection included',
+        tags: ['html','css','js'],
+        live: 'https://colorgenie.netlify.app',
+        image: '/images/colorgenie.png'
+    },
+    {
         title: 'Payfum',
         description: 'Landing page for a mobile money application',
         image: '/images/payfum.jpg',
