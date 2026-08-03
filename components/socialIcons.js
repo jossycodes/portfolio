@@ -8,7 +8,8 @@ import {
   FiverrIcon,
   CodepenIcon,
   DevtoIcon,
-  MediumIcon
+  MediumIcon,
+  XIcon
 } from '@/lib/brandIcons'
 
 export const SocialIcons = {
@@ -21,6 +22,7 @@ export const SocialIcons = {
   codepen: CodepenIcon,
   devto: DevtoIcon,
   medium: MediumIcon,
+  x: XIcon
 }
 
 export const socialLinks = [
@@ -31,21 +33,9 @@ export const socialLinks = [
     color: 'hover:text-white'
   },
   { 
-    name: 'LinkedIn', 
-    icon: LinkedinIcon, 
-    href: 'https://www.linkedin.com/in/josiah-adeniyi-329168240',
-    color: 'hover:text-blue-400'
-  },
-  { 
     name: 'Twitter', 
-    icon: TwitterIcon, 
+    icon: XIcon, 
     href: 'https://twitter.com/yourhandle',
     color: 'hover:text-blue-400'
-  },
-  { 
-    name: 'Fiverr', 
-    icon: FiverrIcon, 
-    href: 'https://www.fiverr.com/s/0bGvDDL',
-    color: 'hover:text-green-400'
   },
 ]

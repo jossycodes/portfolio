@@ -29,7 +29,7 @@ const projects = [
         live: 'https://colorgenie.netlify.app',
         image: '/images/colorgenie.png'
     },
-    {
+    /*{
         title: 'Payfum',
         description: 'Landing page for a mobile money application',
         image: '/images/payfum.jpg',
@@ -49,7 +49,7 @@ const projects = [
         image: '/images/blup.jpg',
         tags: ['JavaScript', 'Canvas', 'Game'],
         live: '#',
-    },
+    },*/
 ]
 
 // wraps a diff to the shortest equivalent path around the ring, e.g. for n=5: 4 -> -1

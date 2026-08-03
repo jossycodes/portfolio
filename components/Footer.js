@@ -22,7 +22,7 @@ export default function Footer() {
           ))}
         </div>
         <p className="text-sm text-zinc-500 flex items-center gap-1">
-          Made with <Heart size={14} className="text-red-500" /> by Josiah Adeniyi
+          <Heart size={14} className="text-red-500" /> by Josiah Adeniyi
         </p>
       </div>
     </footer>

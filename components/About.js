@@ -4,8 +4,8 @@ import { Code, Users, Rocket, Award } from 'lucide-react'
 
 const stats = [
     { icon: Code, label: 'Years Experience', value: '4+' },
-    { icon: Users, label: 'Happy Clients', value: '30+' },
-    { icon: Rocket, label: 'Projects Delivered', value: '50+' },
+    { icon: Users, label: 'Happy Clients', value: '10+' },
+    { icon: Rocket, label: 'Projects Delivered', value: '20+' },
     { icon: Award, label: 'Certifications', value: '3+' },
 ]
 

@@ -41,19 +41,19 @@ function PausePlayButton({ isPaused, togglePause }) {
       onClick={togglePause}
       layout
       transition={{ type: 'spring', stiffness: 400, damping: 32 }}
-      className="relative flex items-center cursor-pointer z-20 overflow-hidden rounded-full hover:border-none focus:border-none"
+      className={`relative flex items-center cursor-pointer z-20 overflow-hidden rounded-full hover:border-none focus:border-none`}
       style={{
         backdropFilter: 'blur(12px)',
         background: 'rgba(255,255,255,0.05)',
         border: '1px solid rgba(255,255,255,0.08)',
-        padding: '10px',
+        padding: '3px',
       }}
     >
       <motion.div layout className="flex items-center justify-center w-6 h-6 flex-shrink-0">
         {isPaused ? (
-          <Play size={18} className="text-white" />
+          <Play size={15} className="text-white" />
         ) : (
-          <Pause size={18} className="text-white" />
+          <Pause size={15} className="text-white" />
         )}
       </motion.div>
 
@@ -62,12 +62,12 @@ function PausePlayButton({ isPaused, togglePause }) {
           <motion.span
             key="label"
             initial={{ opacity: 0, width: 0, marginLeft: 0 }}
-            animate={{ opacity: 1, width: 'auto', marginLeft: 10 }}
+            animate={{ opacity: 1, width: 'auto', marginLeft: 5 }}
             exit={{ opacity: 0, width: 0, marginLeft: 0 }}
             transition={{ duration: 0.35, ease: [0.34, 1.56, 0.64, 1] }}
-            className="text-lg font-medium text-white whitespace-nowrap overflow-hidden"
+            className="text-xs font-medium text-white whitespace-nowrap overflow-hidden"
           >
-            {isPaused ? 'PLAY' : 'PAUSE'}
+            {isPaused ? <span>PLAY&nbsp;&nbsp;</span> : <span>PAUSE&nbsp;&nbsp;</span>}
           </motion.span>
         )}
       </AnimatePresence>
