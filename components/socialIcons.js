@@ -35,7 +35,7 @@ export const socialLinks = [
   { 
     name: 'Twitter', 
     icon: XIcon, 
-    href: 'https://twitter.com/yourhandle',
+    href: 'https://twitter.com/Josiah_yf',
     color: 'hover:text-blue-400'
   },
 ]
