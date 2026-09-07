@@ -402,17 +402,19 @@ function SlideCTA({ accent }) {
         transition={{ delay: 0.32, duration: 0.5, ease }}
         className="flex flex-wrap justify-center gap-4 mb-8"
       >
-        <a href="#projects">
+        
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="px-8 py-3 rounded-full text-white font-medium transition-all flex items-center gap-2 shadow-lg"
             style={{ background: accent.grad, boxShadow: `0 10px 30px -10px ${accent.soft}` }}
           >
+            <a href="#projects">
             <Briefcase size={18} />
             View My Work
+            </a>
           </motion.button>
-        </a>
+        
         <a href="#contact">
           <motion.button
             whileHover={{ scale: 1.05 }}
