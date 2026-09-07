@@ -4,44 +4,85 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Typewriter } from 'react-simple-typewriter'
-import { ChevronDown, Send, Briefcase, Code2, Pause, Play } from 'lucide-react'
+import {
+  ChevronDown,
+  Send,
+  Briefcase,
+  Code2,
+  Pause,
+  Play,
+} from 'lucide-react'
 import Image from 'next/image'
 import { socialLinks } from './socialIcons'
 
 const ease = [0.22, 1, 0.36, 1]
+
 const SLIDE_DURATIONS = [6000, 6000, 8000]
 
 const accents = [
-  { solid: '#ec4899', soft: 'rgba(236,72,153,0.18)', grad: 'linear-gradient(90deg,#f9a8d4,#ec4899)' },
-  { solid: '#3b82f6', soft: 'rgba(59,130,246,0.18)', grad: 'linear-gradient(90deg,#93c5fd,#3b82f6)' },
-  { solid: '#a855f7', soft: 'rgba(168,85,247,0.18)', grad: 'linear-gradient(90deg,#d8b4fe,#a855f7)' },
+  {
+    solid: '#ec4899',
+    soft: 'rgba(236,72,153,0.18)',
+    grad: 'linear-gradient(90deg,#f9a8d4,#ec4899)',
+  },
+  {
+    solid: '#3b82f6',
+    soft: 'rgba(59,130,246,0.18)',
+    grad: 'linear-gradient(90deg,#93c5fd,#3b82f6)',
+  },
+  {
+    solid: '#a855f7',
+    soft: 'rgba(168,85,247,0.18)',
+    grad: 'linear-gradient(90deg,#d8b4fe,#a855f7)',
+  },
 ]
 
 const slideThemes = [
   'radial-gradient(circle at 25% 25%, rgba(236,72,153,0.22), transparent 60%), radial-gradient(circle at 75% 75%, rgba(217,70,160,0.14), transparent 55%)',
+
   'radial-gradient(circle at 75% 25%, rgba(59,130,246,0.22), transparent 60%), radial-gradient(circle at 25% 75%, rgba(56,189,248,0.14), transparent 55%)',
+
   'radial-gradient(circle at 50% 30%, rgba(168,85,247,0.22), transparent 60%), radial-gradient(circle at 80% 80%, rgba(192,132,252,0.14), transparent 55%)',
 ]
 
 const slideVariants = {
-  enter: { opacity: 0, x: 80 },
-  center: { opacity: 1, x: 0 },
-  exit: { opacity: 0, x: -80 },
+  enter: {
+    opacity: 0,
+    x: 80,
+  },
+
+  center: {
+    opacity: 1,
+    x: 0,
+  },
+
+  exit: {
+    opacity: 0,
+    x: -80,
+  },
 }
 
-
+/* -------------------------------------------------------
+   Pause / Play Button
+------------------------------------------------------- */
 
 function PausePlayButton({ isPaused, togglePause }) {
   const [isHovered, setIsHovered] = useState(false)
 
   return (
     <motion.button
+      type="button"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={togglePause}
       layout
-      transition={{ type: 'spring', stiffness: 400, damping: 32 }}
-      className={`relative flex items-center cursor-pointer z-20 overflow-hidden rounded-full hover:border-none focus:border-none`}
+      transition={{
+        type: 'spring',
+        stiffness: 400,
+        damping: 32,
+      }}
+      aria-label={isPaused ? 'Play slideshow' : 'Pause slideshow'}
+      className="relative flex items-center cursor-pointer z-20 overflow-hidden rounded-full hover:border-none focus:border-none focus:outline-none"
       style={{
         backdropFilter: 'blur(12px)',
         background: 'rgba(255,255,255,0.05)',
@@ -49,11 +90,20 @@ function PausePlayButton({ isPaused, togglePause }) {
         padding: '3px',
       }}
     >
-      <motion.div layout className="flex items-center justify-center w-6 h-6 flex-shrink-0">
+      <motion.div
+        layout
+        className="flex items-center justify-center w-6 h-6 flex-shrink-0"
+      >
         {isPaused ? (
-          <Play size={15} className="text-white" />
+          <Play
+            size={15}
+            className="text-white"
+          />
         ) : (
-          <Pause size={15} className="text-white" />
+          <Pause
+            size={15}
+            className="text-white"
+          />
         )}
       </motion.div>
 
@@ -61,13 +111,32 @@ function PausePlayButton({ isPaused, togglePause }) {
         {isHovered && (
           <motion.span
             key="label"
-            initial={{ opacity: 0, width: 0, marginLeft: 0 }}
-            animate={{ opacity: 1, width: 'auto', marginLeft: 5 }}
-            exit={{ opacity: 0, width: 0, marginLeft: 0 }}
-            transition={{ duration: 0.35, ease: [0.34, 1.56, 0.64, 1] }}
+            initial={{
+              opacity: 0,
+              width: 0,
+              marginLeft: 0,
+            }}
+            animate={{
+              opacity: 1,
+              width: 'auto',
+              marginLeft: 5,
+            }}
+            exit={{
+              opacity: 0,
+              width: 0,
+              marginLeft: 0,
+            }}
+            transition={{
+              duration: 0.35,
+              ease: [0.34, 1.56, 0.64, 1],
+            }}
             className="text-xs font-medium text-white whitespace-nowrap overflow-hidden"
           >
-            {isPaused ? <span>PLAY&nbsp;&nbsp;</span> : <span>PAUSE&nbsp;&nbsp;</span>}
+            {isPaused ? (
+              <span>PLAY&nbsp;&nbsp;</span>
+            ) : (
+              <span>PAUSE&nbsp;&nbsp;</span>
+            )}
           </motion.span>
         )}
       </AnimatePresence>
@@ -75,143 +144,323 @@ function PausePlayButton({ isPaused, togglePause }) {
   )
 }
 
+/* -------------------------------------------------------
+   Hero
+------------------------------------------------------- */
 
 export default function Hero() {
   const [active, setActive] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
 
+  /* -----------------------------------------------------
+     Detect mobile
+  ----------------------------------------------------- */
+
   useEffect(() => {
     const mq = window.matchMedia('(max-width: 768px)')
-    const apply = () => setIsMobile(mq.matches)
+
+    const apply = () => {
+      setIsMobile(mq.matches)
+    }
+
     apply()
+
     mq.addEventListener('change', apply)
-    return () => mq.removeEventListener('change', apply)
+
+    return () => {
+      mq.removeEventListener('change', apply)
+    }
   }, [])
+
+  /* -----------------------------------------------------
+     Automatic slide rotation
+  ----------------------------------------------------- */
 
   useEffect(() => {
     if (isPaused) return
-    const t = setTimeout(() => setActive((a) => (a + 1) % 3), SLIDE_DURATIONS[active])
-    return () => clearTimeout(t)
+
+    const timer = setTimeout(() => {
+      setActive((current) => (current + 1) % 3)
+    }, SLIDE_DURATIONS[active])
+
+    return () => clearTimeout(timer)
   }, [active, isPaused])
 
-  // Keyboard navigation
+  /* -----------------------------------------------------
+     Keyboard navigation
+  ----------------------------------------------------- */
+
   useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'ArrowRight') setActive((a) => (a + 1) % 3)
-      if (e.key === 'ArrowLeft') setActive((a) => (a - 1 + 3) % 3)
-      if (e.key === ' ') {
-        e.preventDefault()
-        setIsPaused((prev) => !prev)
+    const handleKeyDown = (event) => {
+      if (event.key === 'ArrowRight') {
+        setActive((current) => (current + 1) % 3)
+      }
+
+      if (event.key === 'ArrowLeft') {
+        setActive((current) => (current - 1 + 3) % 3)
+      }
+
+      if (event.key === ' ') {
+        event.preventDefault()
+
+        setIsPaused((previous) => !previous)
       }
     }
+
     window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+    }
   }, [])
 
-  const togglePause = () => setIsPaused((prev) => !prev)
+  const togglePause = () => {
+    setIsPaused((previous) => !previous)
+  }
+
   const accent = accents[active]
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden px-4">
-      {/* Base backdrop with subtle gradient — lowered alpha on the solid fill so the
-          fixed BackgroundDots layer behind the page shows through */}
+    <section
+      className="min-h-screen flex items-center justify-center relative overflow-hidden px-4"
+    >
+      {/* =================================================
+          BASE BACKDROP
+          Decorative only — cannot receive clicks
+      ================================================= */}
+
       <div
-        className="absolute inset-0 -z-20"
+        aria-hidden="true"
+        className="absolute inset-0 -z-20 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse at 20% 50%, rgba(236,72,153,0.06) 0%, transparent 60%), radial-gradient(ellipse at 80% 50%, rgba(59,130,246,0.06) 0%, transparent 60%), rgba(9,9,11,0.55)'
+          background:
+            'radial-gradient(ellipse at 20% 50%, rgba(236,72,153,0.06) 0%, transparent 60%), radial-gradient(ellipse at 80% 50%, rgba(59,130,246,0.06) 0%, transparent 60%), rgba(9,9,11,0.55)',
         }}
       />
 
-      {/* Grid overlay */}
-      <div className="absolute inset-0 -z-15 opacity-[0.03]">
-        <div className="h-full w-full" style={{
-          backgroundImage: `
-            linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
-          `,
-          backgroundSize: '50px 50px',
-        }} />
+      {/* =================================================
+          GRID OVERLAY
+          Decorative only
+      ================================================= */}
+
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-15 opacity-[0.03] pointer-events-none"
+      >
+        <div
+          className="h-full w-full"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '50px 50px',
+          }}
+        />
       </div>
 
-      {/* Background washes */}
-      {slideThemes.map((bg, i) => (
+      {/* =================================================
+          BACKGROUND SLIDE THEMES
+          Decorative only — cannot receive clicks
+      ================================================= */}
+
+      {slideThemes.map((background, index) => (
         <motion.div
-          key={i}
-          className="absolute inset-0 -z-10"
-          style={{ background: bg }}
-          animate={{ opacity: active === i ? 1 : 0 }}
-          transition={{ duration: 1.6, ease: 'easeInOut' }}
+          key={index}
+          aria-hidden="true"
+          className="absolute inset-0 -z-10 pointer-events-none"
+          style={{
+            background,
+          }}
+          animate={{
+            opacity: active === index ? 1 : 0,
+          }}
+          transition={{
+            duration: 1.6,
+            ease: 'easeInOut',
+          }}
         />
       ))}
 
-      {/* Ambient blobs — smaller blur radius and no position tween on mobile,
-          since animating a large blur is one of the costliest things a
-          mobile GPU can be asked to do continuously */}
+      {/* =================================================
+          AMBIENT BLOB 1
+          Decorative only — cannot receive clicks
+      ================================================= */}
+
       <motion.div
-        className={`absolute top-1/4 left-1/4 rounded-full -z-10 ${isMobile ? 'w-56 h-56 blur-2xl' : 'w-96 h-96 blur-3xl'}`}
+        aria-hidden="true"
+        className={`absolute top-1/4 left-1/4 rounded-full -z-10 pointer-events-none ${
+          isMobile
+            ? 'w-56 h-56 blur-2xl'
+            : 'w-96 h-96 blur-3xl'
+        }`}
         animate={{
           backgroundColor: accent.soft,
-          x: isMobile ? 0 : active === 0 ? 0 : active === 1 ? 60 : -40,
-          y: isMobile ? 0 : active === 0 ? 0 : active === 1 ? -30 : 40,
+
+          x: isMobile
+            ? 0
+            : active === 0
+              ? 0
+              : active === 1
+                ? 60
+                : -40,
+
+          y: isMobile
+            ? 0
+            : active === 0
+              ? 0
+              : active === 1
+                ? -30
+                : 40,
         }}
-        transition={{ duration: 1.8, ease }}
-      />
-      <motion.div
-        className={`absolute bottom-1/4 right-1/4 rounded-full -z-10 ${isMobile ? 'w-56 h-56 blur-2xl' : 'w-96 h-96 blur-3xl'}`}
-        animate={{
-          backgroundColor: accent.soft,
-          x: isMobile ? 0 : active === 0 ? 0 : active === 1 ? -50 : 50,
-          y: isMobile ? 0 : active === 0 ? 0 : active === 1 ? 30 : -30,
+        transition={{
+          duration: 1.8,
+          ease,
         }}
-        transition={{ duration: 1.8, ease, delay: 0.1 }}
       />
 
-      <div className="max-w-6xl mx-auto w-full overflow-hidden">
+      {/* =================================================
+          AMBIENT BLOB 2
+          Decorative only — cannot receive clicks
+      ================================================= */}
+
+      <motion.div
+        aria-hidden="true"
+        className={`absolute bottom-1/4 right-1/4 rounded-full -z-10 pointer-events-none ${
+          isMobile
+            ? 'w-56 h-56 blur-2xl'
+            : 'w-96 h-96 blur-3xl'
+        }`}
+        animate={{
+          backgroundColor: accent.soft,
+
+          x: isMobile
+            ? 0
+            : active === 0
+              ? 0
+              : active === 1
+                ? -50
+                : 50,
+
+          y: isMobile
+            ? 0
+            : active === 0
+              ? 0
+              : active === 1
+                ? 30
+                : -30,
+        }}
+        transition={{
+          duration: 1.8,
+          ease,
+          delay: 0.1,
+        }}
+      />
+
+      {/* =================================================
+          MAIN HERO CONTENT
+
+          Explicitly above all background/decorative layers
+      ================================================= */}
+
+      <div className="max-w-6xl mx-auto w-full overflow-hidden relative z-10">
         <AnimatePresence mode="wait">
-          {active === 0 && <SlideIntro key="slide-0" accent={accent} />}
-          {active === 1 && <SlideInfo key="slide-1" accent={accent} />}
-          {active === 2 && <SlideCTA key="slide-2" accent={accent} />}
+          {active === 0 && (
+            <SlideIntro
+              key="slide-0"
+              accent={accent}
+            />
+          )}
+
+          {active === 1 && (
+            <SlideInfo
+              key="slide-1"
+              accent={accent}
+            />
+          )}
+
+          {active === 2 && (
+            <SlideCTA
+              key="slide-2"
+              accent={accent}
+            />
+          )}
         </AnimatePresence>
       </div>
 
-      {/* Controls bar: Dot navigation + Pause/Play */}
-      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex items-center gap-4 z-10">
+      {/* =================================================
+          CONTROLS BAR
+
+          Explicitly above everything
+      ================================================= */}
+
+      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex items-center gap-4 z-30">
         {/* Dot navigation */}
+
         <div className="flex items-center gap-3 glass px-4 py-2.5 rounded-full">
-          {[0, 1, 2].map((i) => (
+          {[0, 1, 2].map((index) => (
             <button
-              key={i}
-              onClick={() => setActive(i)}
-              aria-label={`Go to slide ${i + 1}`}
-              className="relative h-2 rounded-full transition-all duration-500 outline-none focus-visible:ring-2 focus-visible:ring-white/40"
-              style={{ width: active === i ? 28 : 8 }}
+              key={index}
+              type="button"
+              onClick={() => setActive(index)}
+              aria-label={`Go to slide ${index + 1}`}
+              className="relative h-2 rounded-full transition-all duration-500 outline-none focus-visible:ring-2 focus-visible:ring-white/40 cursor-pointer"
+              style={{
+                width: active === index ? 28 : 8,
+              }}
             >
               <span
                 className="absolute inset-0 rounded-full transition-colors duration-500"
-                style={{ backgroundColor: active === i ? accents[i].solid : '#52525b' }}
+                style={{
+                  backgroundColor:
+                    active === index
+                      ? accents[index].solid
+                      : '#52525b',
+                }}
               />
             </button>
           ))}
         </div>
 
-        {/* Pause/Play button */}
-        <PausePlayButton isPaused={isPaused} togglePause={togglePause} />
+        {/* Pause / Play */}
+
+        <PausePlayButton
+          isPaused={isPaused}
+          togglePause={togglePause}
+        />
       </div>
 
-      {/* Scroll indicator */}
+      {/* =================================================
+          SCROLL INDICATOR
+
+          Decorative only
+      ================================================= */}
+
       <motion.div
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-zinc-500 z-10"
+        aria-hidden="true"
+        animate={{
+          y: [0, 10, 0],
+        }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+        }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-zinc-500 z-20 pointer-events-none"
       >
-        <ChevronDown size={32} className="animate-pulse" />
+        <ChevronDown
+          size={32}
+          className="animate-pulse"
+        />
       </motion.div>
     </section>
   )
 }
 
-/* ---------- Slide 1: identity ---------- */
+/* =========================================================
+   SLIDE 1 — IDENTITY
+========================================================= */
+
 function SlideIntro({ accent }) {
   return (
     <motion.div
@@ -219,24 +468,47 @@ function SlideIntro({ accent }) {
       initial="enter"
       animate="center"
       exit="exit"
-      transition={{ duration: 0.7, ease }}
+      transition={{
+        duration: 0.7,
+        ease,
+      }}
       className="grid lg:grid-cols-2 gap-12 items-center"
     >
+      {/* ---------------------------------------------------
+          LEFT
+      --------------------------------------------------- */}
+
       <div>
         <motion.a
           href="#contact"
-          initial={{ opacity: 0, y: -24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease, delay: 0.08 }}
+          initial={{
+            opacity: 0,
+            y: -24,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 0.6,
+            ease,
+            delay: 0.08,
+          }}
           className="inline-block px-4 py-2 pr-8 rounded-full glass text-sm text-zinc-300 mb-6 cursor-pointer hover:shadow-lg transition-shadow relative"
-          style={{ borderColor: accent.solid }}
+          style={{
+            borderColor: accent.solid,
+          }}
         >
           <span className="relative">
+            <span className="font-bold text-white">
+              OPEN TO WORK
+            </span>
 
-            <span className='font-bold text-white'>OPEN TO WORK</span>
-            <span className="absolute top-1.5 -right-4 w-2 h-2 rounded-full bg-sky-400 animate-ping"
+            <span
+              className="absolute top-1.5 -right-4 w-2 h-2 rounded-full bg-sky-400 animate-ping"
               style={{
-                boxShadow: '0 0 15px 5px rgba(0, 191, 255, 0.8), 0 0 30px 10px rgba(0, 191, 255, 0.4)',
+                boxShadow:
+                  '0 0 15px 5px rgba(0, 191, 255, 0.8), 0 0 30px 10px rgba(0, 191, 255, 0.4)',
                 backgroundColor: '#00d4ff',
               }}
             />
@@ -244,27 +516,60 @@ function SlideIntro({ accent }) {
         </motion.a>
 
         <motion.h1
-          initial={{ opacity: 0, y: -32 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease, delay: 0.14 }}
+          initial={{
+            opacity: 0,
+            y: -32,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 0.7,
+            ease,
+            delay: 0.14,
+          }}
           className="text-4xl md:text-6xl font-bold mb-4 leading-tight"
         >
-          <span className="text-zinc-400">Hi, I&apos;m</span>{' '}
+          <span className="text-zinc-400">
+            Hi, I&apos;m
+          </span>{' '}
+
           <span
-            style={{ backgroundImage: accent.grad, WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}
+            style={{
+              backgroundImage: accent.grad,
+              WebkitBackgroundClip: 'text',
+              backgroundClip: 'text',
+              color: 'transparent',
+            }}
           >
             Josiah Adeniyi
           </span>
         </motion.h1>
 
         <motion.div
-          initial={{ opacity: 0, y: -16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease, delay: 0.22 }}
+          initial={{
+            opacity: 0,
+            y: -16,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 0.6,
+            ease,
+            delay: 0.22,
+          }}
           className="text-xl md:text-2xl text-zinc-300 h-12"
         >
           <Typewriter
-            words={['Building web apps', 'Solving problems', 'Creating experiences', 'Shipping products']}
+            words={[
+              'Building web apps',
+              'Solving problems',
+              'Creating experiences',
+              'Shipping products',
+            ]}
             typeSpeed={100}
             loop={0}
             delaySpeed={800}
@@ -273,18 +578,45 @@ function SlideIntro({ accent }) {
         </motion.div>
       </div>
 
+      {/* ---------------------------------------------------
+          RIGHT — PROFILE IMAGE
+      --------------------------------------------------- */}
+
       <motion.div
-        initial={{ opacity: 0, y: -40, rotate: -4 }}
-        animate={{ opacity: 1, y: 0, rotate: 0 }}
-        transition={{ duration: 0.8, ease, delay: 0.15 }}
+        initial={{
+          opacity: 0,
+          y: -40,
+          rotate: -4,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+          rotate: 0,
+        }}
+        transition={{
+          duration: 0.8,
+          ease,
+          delay: 0.15,
+        }}
         className="flex justify-center"
       >
         <div className="relative">
+          {/* Image glow — decorative only */}
+
           <div
-            className="absolute inset-0 rounded-full blur-2xl animate-glow"
-            style={{ background: accent.grad }}
+            aria-hidden="true"
+            className="absolute inset-0 rounded-full blur-2xl animate-glow pointer-events-none"
+            style={{
+              background: accent.grad,
+            }}
           />
-          <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden border-4 shadow-2xl" style={{ borderColor: accent.soft }}>
+
+          <div
+            className="relative w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden border-4 shadow-2xl"
+            style={{
+              borderColor: accent.soft,
+            }}
+          >
             <Image
               src="/images/me.png"
               alt="Josiah Adeniyi"
@@ -301,9 +633,17 @@ function SlideIntro({ accent }) {
   )
 }
 
-/* ---------- Slide 2: the pitch ---------- */
+/* =========================================================
+   SLIDE 2 — THE PITCH
+========================================================= */
+
 function SlideInfo({ accent }) {
-  const stack = ['React', 'Next.js', 'Node.js', 'MongoDB']
+  const stack = [
+    'React',
+    'Next.js',
+    'Node.js',
+    'MongoDB',
+  ]
 
   return (
     <motion.div
@@ -311,51 +651,114 @@ function SlideInfo({ accent }) {
       initial="enter"
       animate="center"
       exit="exit"
-      transition={{ duration: 0.7, ease }}
+      transition={{
+        duration: 0.7,
+        ease,
+      }}
       className="flex flex-col items-center text-center max-w-3xl mx-auto"
     >
       <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.12, duration: 0.5, ease }}
+        initial={{
+          opacity: 0,
+          y: 16,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          delay: 0.12,
+          duration: 0.5,
+          ease,
+        }}
         className="flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-zinc-300 mb-6"
-        style={{ borderColor: accent.solid }}
+        style={{
+          borderColor: accent.solid,
+        }}
       >
-        <Code2 size={16} style={{ color: accent.solid }} />
+        <Code2
+          size={16}
+          style={{
+            color: accent.solid,
+          }}
+        />
+
         Fullstack Developer &middot; 4+ Years Experience
       </motion.div>
 
       <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2, duration: 0.6, ease }}
+        initial={{
+          opacity: 0,
+          y: 20,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          delay: 0.2,
+          duration: 0.6,
+          ease,
+        }}
         className="text-3xl md:text-5xl font-bold mb-6 leading-tight"
       >
         I build web apps that are
         <br />
-        <span style={{ backgroundImage: accent.grad, WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>
+
+        <span
+          style={{
+            backgroundImage: accent.grad,
+            WebkitBackgroundClip: 'text',
+            backgroundClip: 'text',
+            color: 'transparent',
+          }}
+        >
           fast, beautiful, and user-friendly
         </span>
       </motion.h2>
 
       <motion.p
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.28, duration: 0.5, ease }}
+        initial={{
+          opacity: 0,
+          y: 16,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          delay: 0.28,
+          duration: 0.5,
+          ease,
+        }}
         className="text-zinc-400 max-w-lg mb-8 leading-relaxed"
       >
-        From idea to production — I bring ideas to life with clean code and thoughtful design.
+        From idea to production — I bring ideas to life
+        with clean code and thoughtful design.
       </motion.p>
 
       <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.36, duration: 0.5, ease }}
+        initial={{
+          opacity: 0,
+          y: 16,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          delay: 0.36,
+          duration: 0.5,
+          ease,
+        }}
         className="flex flex-wrap justify-center gap-3"
       >
-        {stack.map((s) => (
-          <span key={s} className="px-4 py-1.5 rounded-full glass text-sm text-zinc-300">
-            {s}
+        {stack.map((technology) => (
+          <span
+            key={technology}
+            className="px-4 py-1.5 rounded-full glass text-sm text-zinc-300"
+          >
+            {technology}
           </span>
         ))}
       </motion.div>
@@ -363,7 +766,10 @@ function SlideInfo({ accent }) {
   )
 }
 
-/* ---------- Slide 3: the call to action ---------- */
+/* =========================================================
+   SLIDE 3 — CALL TO ACTION
+========================================================= */
+
 function SlideCTA({ accent }) {
   return (
     <motion.div
@@ -371,74 +777,154 @@ function SlideCTA({ accent }) {
       initial="enter"
       animate="center"
       exit="exit"
-      transition={{ duration: 0.7, ease }}
+      transition={{
+        duration: 0.7,
+        ease,
+      }}
       className="flex flex-col items-center text-center max-w-2xl mx-auto"
     >
       <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.16, duration: 0.6, ease }}
+        initial={{
+          opacity: 0,
+          y: 20,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          delay: 0.16,
+          duration: 0.6,
+          ease,
+        }}
         className="text-3xl md:text-5xl font-bold mb-4 leading-tight"
       >
         Let&apos;s build something
         <br />
-        <span style={{ backgroundImage: accent.grad, WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>
+
+        <span
+          style={{
+            backgroundImage: accent.grad,
+            WebkitBackgroundClip: 'text',
+            backgroundClip: 'text',
+            color: 'transparent',
+          }}
+        >
           worth shipping
         </span>
       </motion.h2>
 
       <motion.p
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.24, duration: 0.5, ease }}
+        initial={{
+          opacity: 0,
+          y: 16,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          delay: 0.24,
+          duration: 0.5,
+          ease,
+        }}
         className="text-zinc-400 mb-8"
       >
-        Got a project in mind? I&apos;m currently open to new opportunities and collaborations.
+        Got a project in mind? I&apos;m currently open to
+        new opportunities and collaborations.
       </motion.p>
 
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.32, duration: 0.5, ease }}
-        className="flex flex-wrap justify-center gap-4 mb-8"
-      >
-        <a href="#projects">
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-3 rounded-full text-white font-medium transition-all flex items-center gap-2 shadow-lg"
-            style={{ background: accent.grad, boxShadow: `0 10px 30px -10px ${accent.soft}` }}
-          >
-            <Briefcase size={18} />
-            View My Work
-          </motion.button>
-        </a>
-        <a href="#contact">
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-3 rounded-full glass hover:glass-light text-white font-medium transition-all flex items-center gap-2"
-          >
-            <Send size={18} />
-            Contact Me
-          </motion.button>
-        </a>
-      </motion.div>
+      {/* =================================================
+          CTA BUTTONS
+
+          IMPORTANT:
+          The anchor itself is now the clickable element.
+          No <button> nested inside <a>.
+      ================================================= */}
 
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4, duration: 0.5 }}
+        initial={{
+          opacity: 0,
+          y: 16,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          delay: 0.32,
+          duration: 0.5,
+          ease,
+        }}
+        className="flex flex-wrap justify-center gap-4 mb-8"
+      >
+        {/* VIEW MY WORK */}
+
+        <motion.a
+          href="#projects"
+          whileHover={{
+            scale: 1.05,
+          }}
+          whileTap={{
+            scale: 0.95,
+          }}
+          className="px-8 py-3 rounded-full text-white font-medium transition-all flex items-center gap-2 shadow-lg cursor-pointer"
+          style={{
+            background: accent.grad,
+            boxShadow: `0 10px 30px -10px ${accent.soft}`,
+          }}
+        >
+          <Briefcase size={18} />
+
+          View My Work
+        </motion.a>
+
+        {/* CONTACT ME */}
+
+        <motion.a
+          href="#contact"
+          whileHover={{
+            scale: 1.05,
+          }}
+          whileTap={{
+            scale: 0.95,
+          }}
+          className="px-8 py-3 rounded-full glass hover:glass-light text-white font-medium transition-all flex items-center gap-2 cursor-pointer"
+        >
+          <Send size={18} />
+
+          Contact Me
+        </motion.a>
+      </motion.div>
+
+      {/* =================================================
+          SOCIAL LINKS
+      ================================================= */}
+
+      <motion.div
+        initial={{
+          opacity: 0,
+        }}
+        animate={{
+          opacity: 1,
+        }}
+        transition={{
+          delay: 0.4,
+          duration: 0.5,
+        }}
         className="flex gap-4"
       >
-        {socialLinks.map((social, idx) => (
+        {socialLinks.map((social, index) => (
           <motion.a
-            key={idx}
-            whileHover={{ y: -3 }}
+            key={index}
+            whileHover={{
+              y: -3,
+            }}
             href={social.href}
             target="_blank"
             rel="noopener noreferrer"
-            className={`p-2 rounded-full glass hover:glass-light transition-all ${social.color}`}
+            aria-label={social.name || 'Social link'}
+            className={`p-2 rounded-full glass hover:glass-light transition-all cursor-pointer ${social.color}`}
           >
             <social.icon className="w-5 h-5" />
           </motion.a>
