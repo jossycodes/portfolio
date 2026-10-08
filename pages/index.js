@@ -13,6 +13,8 @@ import { init } from "@dropsupport/widget";
 export default function Home() {
 	const widget = init({
 		apiKey: "ds_site_1788190324165_ks9uxg07",
+		brandColor: "#e94560",
+		buttonColor: "#e94560"
 	});
 	return (
 		<>
